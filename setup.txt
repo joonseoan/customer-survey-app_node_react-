@@ -1,0 +1,12 @@
+1. npm init
+
+2. npm i express --save
+
+
+------------ Express VS. Node --------------
+
+ - Node is "JavaScript runtime used to execute code outside of the browser.
+
+ - Express is "Library that runs in the Node runtime.
+    It has helpers to make dealing with HTTP traffic easier.
+    
