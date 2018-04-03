@@ -9,4 +9,94 @@
 
  - Express is "Library that runs in the Node runtime.
     It has helpers to make dealing with HTTP traffic easier.
-    
+
+
+================== Heroku Deployment ==============================
+// ----------------------Configuration for deploying Heroku -----------------------------
+
+// 1) Dynamic Port Deployment for Heroku
+//      Whenever Heroku runs the application,
+//          it injects "env" variable.
+//      "env" is running underline of node
+//          then it passes us to runtime configuration
+//          for the application's execution.
+//      Heroku decides and passes on the port after
+//          the configuration is done and just before
+//          the application starts its execution.
+// It is a format of the production "env"
+// const PORT = process.env.PORT;
+
+// Development environment,
+//      We use it down below.
+// That is, it it is not the production environment,
+//      use "5000".
+At the bottom of the code
+"
+const PORT  = process.env.PORT || 5000;
+app.listen(PORT);"
+
+// 2) Specify Node Environment
+//  Put the version into package.json, 
+//      at the below of "main" : "index.js"
+//  node -v : 8.9.4
+//  npm -v : 5.6.0
+//  "engines" : {
+//      "node" : "8.9.4",
+//      "npm" : "5.6.0"
+//  },
+
+// 3) Specify start script
+//      Tell Heroku how it should start up the server.
+//    Find "scripts" : {} in package.json.
+//    Delete "test" : ~~~~~
+//    Then put "start" : "node index.js" at the spot.
+
+// 4) Make .gitignore
+//      Therefore, Heroku does not find dependency on
+//      "node_modules/" that includes many unnecessary
+//      and duplicated modules with package.json.
+//      Heroku should refer to package.json for the dependancy.
+
+
+// ----------------- Herok Deployment CheckList ------------------
+
+// 1) Heroku Account => Done.
+
+// 2) Commit our codebase to git
+    // git init
+    // git add .
+    // git commit -m "initial commit"
+
+// 3) Install Heroku CLI and Create App
+//     Visit : https://devcenter.heroku.com/articles/heroku-cli
+//     install WindowVersion CLI at https://devcenter.heroku.com/articles/heroku-cli#download-and-install
+//     In bash terminal,
+//     "heroku -v"    
+
+// 4) Create App
+//      "heroku login" (when it is the first time)
+//      "heroku create" (create a new app) 
+
+//      The first url: https://calm-cove-22171.herokuapp.com/ => the name of the identification 
+//      The other url: https://git.heroku.com/calm-cove-22171.git => target Deployment
+//          => It is a Heroku's git repository to be associated with the local seerver. 
+
+//      By using the second url, 
+//          " git remote add heroku https://git.heroku.com/calm-cove-22171.git "
+//      Then, 
+//      "git push heroku master"
+
+//      Finally, run Herok
+//      "heroku open"
+
+//      FYI, to fix any issue, "heroku logs"
+
+//  -----------------Subsequent Deploys-----------------------
+
+//  1) Commit codebase with git (Whenever we edit the codes)
+        - git status (check the modified files or folders)
+        - git add .
+        - git commit
+        - git push heroku master
+
+//      
