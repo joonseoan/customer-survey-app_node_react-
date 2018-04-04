@@ -99,4 +99,39 @@ app.listen(PORT);"
         - git commit
         - git push heroku master
 
-//      
+//
+
+
+// ------------------------- Passport.JS -----------------------
+
+1. website: http://www.passportjs.org/  
+
+2. setup
+ 1) basic passport : npm i --save passport
+
+ 2) google strategies : npm i --save passport-google-oauth20
+
+
+
+// ------------------------- Sign up with Google Auth ------------------
+
+1. Create new project at Google
+    1) visit : console.develpers.google.com
+    2) click the drop bar next to "Google API" log at the upper left corner.
+    3) Then click "+" symbole.
+
+2. Enable Oauth API
+    1) Find and click Enable API and Services in blue.
+    2) Search on "google+ api" and then click it.
+    3) Then, click "Enable" in blue at the top.
+    4) Click the "credential" at the left of the menu bar.
+    5) Click the "create credential" and select "oauth id"
+    6) Then click the blue button "configure conscent screen"
+        FYI, "conscent" here to make Google to grant permission.
+    7) Fill out the "Product Name shown to users" with "customer-survey"
+       Then, save it.
+    8) Check "Web Application" and Fill out "Authorized Javascript Origin"
+       with "http://localhost:5000" and "Authorized redirect URLs" with "http://localhost:5000/*"
+       Then click "Create"
+    9) It will populate "Client ID" and "Client Secret"
+    
