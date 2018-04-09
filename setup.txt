@@ -135,3 +135,60 @@ app.listen(PORT);"
        Then click "Create"
     9) It will populate "Client ID" and "Client Secret"
     
+====Redirect URL Setup ==============================================================
+400 Error in the first request from the user to Google Auth Server,
+We will face "Error: redirect_uri_mismatch" error
+
+/*
+https://accounts.google.com/o/oauth2/v2/auth? // => query string
+response_type=code& // => asking for the code 
+
+//*****
+// It is same as defined in Strategy :  callbackURL : '/auth/google/callback'
+// The reason that Google does not grant auth to this URL at first
+//      is becaue it can be displaced with the malicious URL created by hackers.
+// It can be changed hacker's URL and then can be a space to receive customer profile
+//      Google would provide.
+// In order to prevent the swtich by hacker, it needs to get another auth from Google.
+redirect_uri=http%3A%2F%2Flocalhost%3A5000%2Fauth%2Fgoogle%2Fcallback&
+
+scope=profile%20email& // => We are sending...
+
+// => clientID 
+client_id=351399471671-5hc1bhvbt3955volvo1kctvo8bv1omba.apps.googleusercontent.com
+
+1. Visit URL Google provides at the error page.
+2. Find "Authorized redirect URIs"
+3. Change "http://localhost:5000/*" => "http://localhost:5000/auth/google/callback" defined
+    at Strategy in "index.js"
+
+    ===> Then visit the route again.
+         We will see the redirect URL and also "code" Google gives us in the URL bar.
+
+
+*/
+
+========== nodemon install ================
+1. setup: npm install --save nodemon
+
+2. input in package.json, at the below of "start"
+   "dev": "nodemon index.js"
+   To run : npm run dev
+
+============ MongoDB Install ==================
+
+1. go to mLab and signup
+2. Log in mLab.
+3. Click "create new"
+4. Select "SandBox" for free and click "continue".
+5. Select region "US East" which is the closest region from Toronto.
+   Then click "Continue"
+6. Input database name "customer-survey" and click "continue"
+7. "Submit Order"
+8. Click the project we created. => "A database user is required to connect to this database. To create one now, visit the 'Users' tab and click the 'Add database user' button."
+   We need to setup "administrative user" to the database.
+   Click "Users" tab and "add database user"
+   Then, input user by creating user name and passwd. (joon, 1111)
+
+================== mongoose installation ====================
+1. setup: npm install mongoose --save
