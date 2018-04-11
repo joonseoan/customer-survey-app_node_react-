@@ -13,13 +13,23 @@ module.exports = (app) => {
     app.get('/auth/google/callback', passport.authenticate('google'))
 
 
+    // Need another route handler to give req.user once auth starts working??
+    app.get('/api/currentUser', (req, res) => {
+
+        // the user info is incomming from cookieSession containing the user document
+        //      created by serializeUser/deserializeUser of passport.
+        // ********** That is, the session remembers the user logged in before!!!!!
+        res.send(req.user);
+
+    });
+
 }
 // Route Handler to listen to the user access to the defined route "/auth/google".
 //      => It is a kind of the first user request.
 // Then it will try to send the info including "clientID" and "clientSecret"
 //      for the configuration.
 
-// We will not use callback because we are using "passport" MW.
+// We will not use a customized callback because we are using "passport" MW.
 // The " passport~~~ " below is to process "send" authenticate response info to
 //      google server, not back to the user.
 

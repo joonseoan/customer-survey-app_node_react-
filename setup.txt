@@ -192,3 +192,7 @@ client_id=351399471671-5hc1bhvbt3955volvo1kctvo8bv1omba.apps.googleusercontent.c
 
 ================== mongoose installation ====================
 1. setup: npm install mongoose --save
+
+
+============================= Making cookie at inde.jx ===================
+setup: npm i --save cookie-session
