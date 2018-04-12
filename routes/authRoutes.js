@@ -10,20 +10,57 @@ module.exports = (app) => {
     
     }));
 
-    app.get('/auth/google/callback', passport.authenticate('google'))
+    app.get('/auth/google/callback', passport.authenticate('google'));
 
+    // Logout
+    app.get('/api/logout', (req, res) => {
 
-    // Need another route handler to give req.user once auth starts working??
+        // "logout()": tells the cookieSession to detach 
+        //      passport's serializeUser/deserializeUsser functions  
+        //      and to kill the user auth state stored in the cookieSession.
+        req.logout();
+        // acknowlegement that "you just logged out."
+        // => on the browser, it shows the empty because
+        //      the user logged out! and cookieSession is now empty.
+        res.send(req.user);
+    
+    });
+
+    // Need another route handler to give req.user state once auth starts working??
     app.get('/api/currentUser', (req, res) => {
 
         // the user info is incomming from cookieSession containing the user document
-        //      created by serializeUser/deserializeUser of passport.
-        // ********** That is, the session remembers the user logged in before!!!!!
+        // Then, the next step does serializeUser/deserializeUser of passport 
+        //      which does not have steps about "permission" and "code" exchange processes
+        // That is, the session remembers the user logged in before!!!!!**********************
+        // Then it maintains the state : "You just logged in!!! again"
+        // => on the brower, it shows user info
+        
+        /**
+         * {
+             "_id": "5ace7aa0955a6f6468a04b0f",
+                "googleID": "106062814941201787643",
+            "__v": 0
+            }
+         */
+        
+        // ultimately takes the user document out of the cookies
+        //      sends it to the user. 
         res.send(req.user);
+
+        /**
+         * {
+             "passport": {
+                 "user": "5ace7aa0955a6f6468a04b0f"
+                 }
+            }
+        */
+         // res.send(req.session);
 
     });
 
 }
+
 // Route Handler to listen to the user access to the defined route "/auth/google".
 //      => It is a kind of the first user request.
 // Then it will try to send the info including "clientID" and "clientSecret"
@@ -42,15 +79,6 @@ module.exports = (app) => {
 //    'scope' defines the properties we want? to use for auth
 //      ,among many different properties.
 // In this app, we will use "profile" and "email" only.
-
-// To get permission and To Receive the code
-/*
-app.get('/auth/google', passport.authenticate('google', {
-
-    scope : ['profile', 'email']
-
-}));
-*/
 
 // To auth after this app server receives the code from Google.
 // Then after Google receives "code", it will exchange the code 
