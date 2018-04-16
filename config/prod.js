@@ -6,7 +6,7 @@
 // Because we will commit this file, we must not write the keys over here.
 const googleClientID = process.env.GOOGLE_CLIENT_ID;
 const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET;
-const mongoURI = process.env.MONGO_URI;
+const mongoURI = process.env.MONGODB_URI;
 const cookieKey = process.env.COOKIE_KEY; // It is any letter just to find the user.
 
 module.exports = { googleClientID, googleClientSecret, mongoURI, cookieKey }; 
