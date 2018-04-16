@@ -109,7 +109,27 @@ passport.use(
         //      where / which route Google should ping the permission
         //      at this app server, after it listens to and investigates
         //      the request form the user and then this app server
-        callbackURL : '/auth/google/callback'
+        
+        
+        // It is a relative path.
+        // When we use the localhost://5000,
+        //      Google Strategy is able to automatically recognize
+        //      the right path.
+        // However, when we use the server, google Stragegy
+        //      is not able to correctly understand the all url.
+        // For instance,
+        //      heroku's url for redirection is "https" ~/auth/google/callback.
+        //      However, because google Strategy matches that redirect url with this callback url,
+        //      it can be confused with the "http" because the proxy url is not trusted from google Strategy.
+        
+        // 1) Solution one :Specify two full urls for both the heroku server and the localhost.
+        // Also, add some algoriths to choose one of both in terms of the environments
+        //      "development" and "production".
+        callbackURL : '/auth/google/callback',
+        
+        // 2) It is a solution two. 
+        // Make root heroku directory which is a "proxy" address trustful. 
+        proxy : true
 
     }, (accessToken, refreshToken, profile, done) => {
 
