@@ -19,21 +19,23 @@ module.exports = (app) => {
         //      passport's serializeUser/deserializeUsser functions  
         //      and to kill the user auth state stored in the cookieSession.
         req.logout();
+
         // acknowlegement that "you just logged out."
         // => on the browser, it shows the empty because
         //      the user logged out! and cookieSession is now empty.
+        
+        // "reg.user": "user" document requested by the current user to be detached.
+        //
         res.send(req.user);
     
     });
 
-    // Need another route handler to give req.user state once auth starts working??
+    // Need another route handler to give req.user state once auth is done and starts working.
+    // From this directory, the user is able to mange the app.
     app.get('/api/currentUser', (req, res) => {
 
         // the user info is incomming from cookieSession containing the user document
-        // Then, the next step does serializeUser/deserializeUser of passport 
-        //      which does not have steps about "permission" and "code" exchange processes
-        // That is, the session remembers the user logged in before!!!!!**********************
-        // Then it maintains the state : "You just logged in!!! again"
+        //      through the steps of serializeUser/deserializeUser or first-time user's signup 
         // => on the brower, it shows user info
         
         /**
@@ -44,8 +46,8 @@ module.exports = (app) => {
             }
          */
         
-        // ultimately takes the user document out of the cookies
-        //      sends it to the user. 
+        // ultimately takes the user document out of the cookies or database
+        //      sends it to the user, telling "You are just logged in!"
         res.send(req.user);
 
         /**
@@ -61,7 +63,7 @@ module.exports = (app) => {
 
 }
 
-// Route Handler to listen to the user access to the defined route "/auth/google".
+// Route Handler listens to the user access to the defined route "/auth/google".
 //      => It is a kind of the first user request.
 // Then it will try to send the info including "clientID" and "clientSecret"
 //      for the configuration.

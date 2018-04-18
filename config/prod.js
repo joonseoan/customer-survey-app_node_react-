@@ -4,10 +4,11 @@
 //   2) Heroku will notice the we are using "production env and its variable" listed below.
 
 // Because we will commit this file, we must not write the keys over here.
+// ID must be uppercase.
 const googleClientID = process.env.GOOGLE_CLIENT_ID;
 const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET;
 const mongoURI = process.env.MONGODB_URI;
-const cookieKey = process.env.COOKIE_KEY; // It is any letter just to find the user.
+const cookieKey = process.env.COOKIE_KEY; // It can be any letter just to find the user.
 
 module.exports = { googleClientID, googleClientSecret, mongoURI, cookieKey }; 
 

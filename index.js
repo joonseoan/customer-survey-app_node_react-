@@ -7,7 +7,7 @@ const cookieSession = require('cookie-session');
 // In order to maintain the session,
 //      by telling passport the auth state
 //      that the passport do not need to get the step again
-//      for the first time user.
+//      the first time user took.
 const passport = require('passport');
 
 // import key
@@ -39,21 +39,21 @@ const app = express();
 /**************************************** cookieSession Setup for express route*******************************************************************
  * 
  *      // Relationship
- *      passport - (app = express()) - cookieSession
+ *      app = express()) - cookieSession - passport
  * 
- *          - "app" tells "passport", "please" identify profile.id based "_id" 
+ *          - The user accesses the express's directory.
+ * 
+ *          - "cookieSession" tells "passport", "please" identify profile.id based "_id" 
  *               and decide whether or not "passport" works on 
  *               its serializeUser/deserializeUser together with cookieSession
- *          
- *          - In the meantime, cookieSession pulls out the data from Cookie.
- *              (Data is document's "id", which is "req.session"
- *                   cookieSession stored in the first time user's login.)
+ *        
+ *          - Simultanously, cookieSession tries to pull out the user info out of "Cookie", a storage
  *          
  *          - Then passport will try to find the document, an object containing "profile.id"
- *               based on "_id", req.session delivered by cookieSession.
+ *               to get document's "_id" of "req.session" to grant "req.user" of the current user.
  *               
  *              1) If the profile.id is available in DB, it runs serializeUser/desrializeUser
- *                  to give the user info to cookieSession.
+ *                  to get the user info and its user.id and then grant the user app management.
  *              
  *              2) If the profile.id is not available, it passes the s/deserializeUser functions
  *                  and then makes the app server and google run "permission / code exchange process"
@@ -80,19 +80,24 @@ const app = express();
 
 );
 
-// Then,  app tells passport
-//      we shoud check that cookieSession still maintaines the user info.
-// To do so, cookieSession in express "app" makes the passport implement s/deserializeUser functions
-//      and then check up the session status,
-//      when passport initialize authentication work.
-//  
 // The two lines below are kind of a single unified unit to execute steps above.
 
-// It puts the user info object into session 
-//      when the user access "/api/currentUser" for login
+// Then, app tells passport
+//      we shoud check that cookieSession still maintaines the user info.
+// To do so, cookieSession in express "app" makes the passport implement s/deserializeUser functions run first
+//      and then check up the session status that the user info is available,
+//      when passport initialize authentication work.
+
+// If the user info based on profile.id is available,
+//    it puts the user info object into session 
+//    when the user accesses "/api/currentUser" for login
 // 
 // Also, it stop passport working on s/deserialize functions
-//      when the user access "/api/logout" for logout 
+//    if the user info is not available and 
+//    let it jump to the steps of the first-time user
+//    
+
+// session will finish when the user logout
 app.use(passport.initialize());
 app.use(passport.session());
 

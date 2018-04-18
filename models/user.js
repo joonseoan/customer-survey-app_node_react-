@@ -10,6 +10,6 @@ const userSchema = new Schema ({
 
 });
 
-// "users" : collectionn name we want to create.
-// "userSchema" : the property type we want to create.
+// "users" : collection name we want to create.
+// "userSchema" : document's field type we want to create.
 mongoose.model('users', userSchema);
