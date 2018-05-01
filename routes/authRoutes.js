@@ -10,7 +10,13 @@ module.exports = (app) => {
     
     }));
 
-    app.get('/auth/google/callback', passport.authenticate('google'));
+    // It is same thing as middleware of authenticate and (req, res)
+    //      node js.
+    app.get('/auth/google/callback', passport.authenticate('google'), (req, res) => {
+
+        res.redirect('/survey');
+
+    });
 
     // Logout
     app.get('/api/logout', (req, res) => {
@@ -26,7 +32,11 @@ module.exports = (app) => {
         
         // "reg.user": "user" document requested by the current user to be detached.
         //
-        res.send(req.user);
+        // res.send(req.user);
+
+        // To redired to main page instead to show req.user
+        res.redirect('/');
+
     
     });
 
@@ -48,13 +58,43 @@ module.exports = (app) => {
         
         // ultimately takes the user document out of the cookies or database
         //      sends it to the user, telling "You are just logged in!"
+        // The reason that "req.user" is required is because google sends "res.user" not "req.body"
+        // Like this.
+        /**
+            passport.serializeUser((user, done) => {
+
+                done(null, user.id);
+
+            });
+
+            passport.deserializeUser((id, done) => {
+
+                UserID.findById(id).then((user) => {
+
+                    done(null, user);
+
+                });
+
+            });
+            
+        */ 
         res.send(req.user);
 
+        console.log('req.user: ', req.user);
+        // console.log('req.body: ', req.body);
+        // res.send(req.body);
+        
         /**
+         [req.session]
+
          * {
+         
              "passport": {
+          
                  "user": "5ace7aa0955a6f6468a04b0f"
+          
                  }
+          
             }
         */
          // res.send(req.session);

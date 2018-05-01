@@ -11,12 +11,28 @@ import { Provider } from 'react-redux';
 // Finally, "Provider" makes react and redux woring togeter.
 import { createStore, applyMiddleware } from 'redux';
 
+// importing materialize.min.css over here.
+// It is not matter where we imports materialize css.
+// Just once and then good to go!!
+// For the url, please find materialize-css in node_modules.
+// We need to put "css" extension because it is not javascript file.
+// so that webpack can recognize it as a css file and merge it into this app.
+
+// 1)
+// import materializeCSS from 'materialize-css/dist/css/materialize.min.css';
+
+// 2) just like "require('nodemodule')";
+import 'materialize-css/dist/css/materialize.min.css';
+
+// Use redux-thunk
+import reduxThunk from 'redux-thunk';
 
 import App from './components/App';
 import reducers from './reducers/index';
 
 // Define store and data-pulling-out middleware in Redux
-const store = createStore(reducers, {}, applyMiddleware());
+const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
+//const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
 ReactDom.render(
 
