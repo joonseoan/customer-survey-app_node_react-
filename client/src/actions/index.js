@@ -7,13 +7,14 @@ import { FETCH_USER } from './types';
  * The verification of the existing user can be verified by using the express in the server.
 
     For instance, we can use "get("api/currentUser")" 
-        makes us know if the request user has a "user.id" 
-    which is sent from the server and is stored in the cookie when the user signs up.
+        that makes us notice if the requesting user has a "user.id" 
+        which is sent from the server and is stored in the cookie when the user signs up.
 
     If the user has the user.id, the /api/currentUser will send(req.user) 
-        which is the registered user information.
+        , the registered user information.
+    
     If the user does not, the server will not let the user log in
-        and then redirect the user to signup which is "/auth/google"
+        and then redirect the user to signup url which is "/auth/google"
  
 */
 export const fetchUser = () => // {
@@ -21,17 +22,21 @@ export const fetchUser = () => // {
     // Proxy rule again for the url.
     // Add this url for proxy in package.json
     /*
+    
     "/api/*": {
         "target": "http://localhost:5000"
       }
     */
-    // Bear in mind again that prox this is just for development env.
+
+    // Bear in mind again that 'proxy', this is just for development env.
     // In production, the react and node server will be merged.
-    // No need to make use of proxy.
+    // No need to make use of proxy for communication between the node and react servers.
     // axios.get(`/api/currentUser`);
 
     // usually, without redux-thunk
+
     // 1)
+
     /*
     const request = axios.get(`/api/currentUser`);
 
@@ -43,13 +48,14 @@ export const fetchUser = () => // {
     });
     */
 
-    // Rather than return type and payload directly to reducer by using dispatch function
-    //      "redux-thunk" returns a fuction including "action" with the dispatch function
-    //      and then reducers get the dispatch and its object values
+    // Rather than return types and payloads directly to the reducer
+    //      by using dispatch function, "redux-thunk" returns fuctions including "action"
+    //      with the dispatch function and then reducers get the dispatch function and its object values
     //      whenever its reducer is triggered.
-    // In other words, action and values are not directly plaeced in all reduers.
-    // It is only when they are necessary *****"after the action is sucessfully done".
+    // In other words, action and values are not directly placed in all reduers.
+    // It is only when they are necessary *****" after the action is sucessfully done".
     // "action: axios.get('/api/cuurentUser');""
+    
     // 1)
     // return function(dispatch) {
 
@@ -66,9 +72,10 @@ export const fetchUser = () => // {
 
         //     }));
 
+        // 2)
         // By using await
         // removed "return" 
-        //  () => function or value : it will automatically return it.
+        //  "() =>"" function or value : it will automatically return it.
         async dispatch => {
 
             const res = await axios.get('/api/currentUser');
