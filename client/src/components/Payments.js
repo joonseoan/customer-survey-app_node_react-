@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import StripeCheckout from 'react-stripe-checkout';
+import { connect } from 'react-redux';
+
+// import { handleToken } from '../actions/index';
+import * as actions from '../actions';
 
 class Payments extends Component {
 
@@ -90,11 +94,26 @@ class Payments extends Component {
 
 			<StripeCheckout
 
-				amount = {500}
-				token = { token => console.log('token: ', token)}
+				name = 'Customer Survey'
+				description = '$5 for 5 emails'
+				amount = { 500 } // => $5.00
+
+				// give token data the server
+				// It is a variable to get 'token' object from stripe api server 
+				token = { token => this.props.handleToken(token) }
 				stripeKey = { process.env.REACT_APP_STRIPE_KEY }
 
-			/>
+			>
+				{/* Bear in mind that html element 
+
+				is able to get into the componet element*/}
+				<button className = 'btn'>
+
+					Add Credits
+				
+				</button>
+
+			</StripeCheckout>
 
 		);
 
@@ -102,4 +121,6 @@ class Payments extends Component {
 
 }
 
-export default Payments;
+// actions it self is object. It is not a property of an object.
+//		Therefore, it is not requred to use { }
+export default connect(null, actions)(Payments);

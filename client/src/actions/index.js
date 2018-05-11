@@ -87,3 +87,14 @@ export const fetchUser = () => // {
         };
 
 // };
+
+// This is to get the current credits of the user.
+// Should deal together with the auth. Not separately.
+export const handleToken = token => async dispatch => {
+
+    const res = axios.post('/api/stripe', token);
+
+    // get "res" after posts some data to the server.
+    dispatch({ type: FETCH_USER, payload: res.data });
+    
+};

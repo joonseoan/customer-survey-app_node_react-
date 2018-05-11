@@ -6,7 +6,10 @@
     "/auth/google": {
       "target": "http://localhost:5000"
     },
-    "/api/*": {
+    "/api/currentUser": {
+      "target": "http://localhost:5000"
+    },
+    "/api/stripe": {
       "target": "http://localhost:5000"
     }
   },

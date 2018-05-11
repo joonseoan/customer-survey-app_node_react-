@@ -9,7 +9,18 @@ const googleClientID = process.env.GOOGLE_CLIENT_ID;
 const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET;
 const mongoURI = process.env.MONGODB_URI;
 const cookieKey = process.env.COOKIE_KEY; // It can be any letter just to find the user.
+const stripePublishableKey = process.env.STRIPE_PUBLISHABLE_KEY;
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 
-module.exports = { googleClientID, googleClientSecret, mongoURI, cookieKey }; 
+module.exports = { 
+
+					googleClientID,
+					googleClientSecret,
+					mongoURI,
+					cookieKey,
+					stripePublishableKey,
+					stripeSecretKey
+
+				}; 
 
 // In order for the keys to be setup, please visit the document file.

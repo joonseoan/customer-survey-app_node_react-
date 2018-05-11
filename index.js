@@ -5,10 +5,13 @@ const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 
 // In order to maintain the session,
-//      by telling passport the auth state
-//      that the passport do not need to get the step again
+//      by telling "passport" of the auth state
+//      that the passport do not need to get the signup steps again
 //      the first time user took.
 const passport = require('passport');
+
+// body-parser: 클라이언트의 HTTP 요청 중 POST 요청의 바디 데이터에 접근하기 위한 모듈
+const bodyParser = require('body-parser');
 
 // import key
 const { mongoURI, cookieKey } = require('./config/keys');
@@ -44,12 +47,12 @@ const app = express();
  *          - The user accesses the express's directory.
  * 
  *          - "cookieSession" tells "passport", "please" identify profile.id based "_id" 
- *               and decide whether or not "passport" works on 
+ *               and decide whether or not "passport" will work on 
  *               its serializeUser/deserializeUser together with cookieSession
  *        
  *          - Simultanously, cookieSession tries to pull out the user info out of "Cookie", a storage
  *          
- *          - Then passport will try to find the document, an object containing "profile.id"
+ *          - Then, passport will try to find the document, an object containing "profile.id"
  *               to get document's "_id" of "req.session" to grant "req.user" of the current user.
  *               
  *              1) If the profile.id is available in DB, it runs serializeUser/desrializeUser
@@ -66,11 +69,21 @@ const app = express();
  *             and also simutaneously grants the user authority to manage apps withouth additional login steps.
  * 
  ***********************************************************************************************************/
- app.use(cookieSession({
+/**  Making Cookies in "index.js"**************8
+ 
+    npm install --save cookie-session
+
+*/
+
+// When using "POST", the server will not read "req.body"
+// Therefore, we need "body-parser" then change it to json format. 
+app.use(bodyParser.json());
+
+app.use(cookieSession({
 
     // 30 days : 30 days, 24 hours 60 min, 60 sec, 100 msec
     maxAge : 30 * 24 * 60 * 60 * 100,
-
+ 
     // A unique key to be encripted to identify the user
     // It is an array because different keys are listed
     //      then we can randomly choose a key for the security reason.
@@ -83,7 +96,8 @@ const app = express();
 // The two lines below are kind of a single unified unit to execute steps above.
 
 // Then, app tells passport
-//      we shoud check that cookieSession still maintaines the user info.
+//      we shoud check that cookieSession still maintains the user info.
+
 // To do so, cookieSession in express "app" makes the passport implement s/deserializeUser functions run first
 //      and then check up the session status that the user info is available,
 //      when passport initialize authentication work.
@@ -91,7 +105,7 @@ const app = express();
 // If the user info based on profile.id is available,
 //    it puts the user info object into session 
 //    when the user accesses "/api/currentUser" for login
-// 
+ 
 // Also, it stop passport working on s/deserialize functions
 //    if the user info is not available and 
 //    let it jump to the steps of the first-time user
@@ -110,6 +124,7 @@ app.use(passport.session());
 //
 // **********************************************************************8 */
 require('./routes/authRoutes')(app);
+require('./routes/billingRoutes')(app);
 
 const PORT = process.env.PORT || 5000;
 console.log(`starting on ${PORT}`);

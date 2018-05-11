@@ -11,43 +11,38 @@ const { googleClientID, googleClientSecret } = require('../config/keys');
 //      because different mongooses with different schema can be used
 //      in big applications or development environment.
 // In order to take the specific mongoose in, 
-//      it would be better use mongoose's model name, 'users'.
+//      it would be better to use mongoose's model name, 'users'.
 // "UserID" is an instance to access the documents of 'user' model.
 const UserID = mongoose.model('users');
 
 // ============================ "user info" setup in DB by taking advantage of user.id===============================
 // "user" : "users" model
-//      It is the 'users' model stored in mongoDB by utilizing
-//          "UserID.findOne({ googleID : profile.id }).then((userGoogleID) => {"
-//          down below. More speicifically, "userGoogleID and user" below.
-// This user information (in other words, "profile.id") is 
-//      going to immediately attacch to cookieSession 
+//      "user" is a document, mapping with 'users' model, stored in Cookie.
+// This user information (in other words, "profile.id") in cookie is 
+//      going to immediately attach to cookieSession 
 //      by using "serilizeUser" function.
 
 // done : notify the "serializeUser" work is done(callback).
-// "serializeUser" is a kind of work that gets the DB involed then
-//       pulls out the user info.
+// "serializeUser" is a kind of work to gets the user info by utilizing cookie storage and cookieSession
 passport.serializeUser((user, done) => {
 
-    // "user.id" is "document's id" that exists together with the targeted "profile.id"
+    // "user.id" is "document's id" that exists together with the targeted "profile.id" in cookie
     // "seriizeUser" function utilizes "_id" of a document,
     //      instead of profile.id which is exposed 
     //      during the query.
 
     // "user.id" is shortcut "_id", by the way.
 
-    // Also, the user for real is able to differentiate its profile id for different apps.
+    // Also, the user for real should be able to differentiate its profile.id for different apps.
     // "document id" is able to represent these different profile ids.
 
     // Just remember!!!!
     // As the user logged in for the first time and
     //      after the server received and saved "profile.id",
     //      the auth flow does not use "profile.id". It uses "document id"
-    // **** "profile.id" is used just to get the user info document of MongoDB then
-    //      to attach "user" document to this serializeUser method.
-
-    // If "user" is not available, the next step is the signup process.
-    // It jumps up the "deserializeUser" method.
+    
+    // If "profile.id" is not available, the next step is the signup process.
+    // Otherwise, it jumps up the "deserializeUser" method.
     done(null, user.id);
 
 });
@@ -55,10 +50,9 @@ passport.serializeUser((user, done) => {
 // ============================ Granting Service Authorization by taking info from Session ============================
 
 // "id" is the document's "id property" 
-// Just take out the id property out of "serializeUser" function!!.
-// Then, grant access right to manage app service 
-//      after it identifies "profile.id" with Google 
-//      before it starts "serializeUser" method above. 
+//      that is just taken out of "serializeUser" function!!.
+// If the "_id" is indentical with with "_id" in database,
+//      then, it grants access right to manage app service 
 passport.deserializeUser((id, done) => {
 
     UserID.findById(id).then((user) => {
@@ -75,7 +69,7 @@ passport.deserializeUser((id, done) => {
 
 */
 
-// --------------- The codes down below might not be use when it uses serializeUser/desrialzeUser with "cookieSession"---------------------------
+// --------------- The codes down below might not be used when it uses serializeUser/desrialzeUser with "cookieSession"---------------------------
 
 // "passport" is not required to export 
 //      because "index.js" does not use a specific function of this file.
@@ -109,10 +103,9 @@ passport.use(
         clientSecret : googleClientSecret,
 
         // It assigns the route / directory
-        //      where / which route Google should ping the permission
+        //      where Google should ping the permission
         //      and "code" at this app server, after it listens to and investigates
         //      the request from the user and then this app server
-        
         
         // It is a relative path.
         // When we use the localhost://5000,
@@ -120,10 +113,9 @@ passport.use(
         //      the correct path.
         // However, when we use the server, google Stragegy
         //      is not able to correctly understand the domain proxy url.
-        // For instance,
-        //      heroku's url for redirection is "https" ~/auth/google/callback.
-        //      However, because google Strategy matches that redirect url with this callback url,
-        //      it can be confused with the "http" because the proxy url is not trusted from google Strategy.
+        // For instance, heroku's url for redirection is "https" ~/auth/google/callback.
+        // Because because google Strategy matches and redirect the url with this specified callback url,
+        //      it can be confused with the "http" because the proxy url is not trusted in google Strategy side.
         
         // 1) Solution one :Specify two full urls for both the heroku server and the localhost.
         // Also, add some algoriths to choose one of both in terms of the environments
@@ -171,14 +163,7 @@ passport.use(
          // userid.save();
          
          //2)
-         // new UserID({ googleID : profile.id }).save();
-
-         /***************************
-          * Pleae, bear in mind that find, delete, update....methods are used
-          *     only with instance reference, itself like "UserID.find()",
-          *     not with object itself "new UserID().find() ===> (x)"
-          * 
-          */ 
+         // new UserID({ googleID : profile.id }).save(); 
 
         // In order to avoid making more than a "googleID" per user
 
@@ -189,9 +174,6 @@ passport.use(
             if(!userGoogleID) new UserID({ googleID : profile.id }).save();
 
         });*/
-
-        // Actually, it could be a standard format
-        // UserID.findeOne().then((arg) => {
 
             // with "express()"
                 //  if (!arg) return res.send();

@@ -2,11 +2,15 @@ console.log('starting authRoutes.js');
 
 const passport = require('passport');
 
-module.exports = (app) => {
+// just bear in mind that again 
+//      that "app" is an object (reference vavriable).
+module.exports = app => {
 
+    // passport.authenticate => redirects to google's auth 
     app.get('/auth/google', passport.authenticate('google', {
 
-        scope : ['profile', 'email']
+        // then sends to profile and email to google auth
+        scope : [ 'profile', 'email' ]
     
     }));
 
@@ -14,6 +18,7 @@ module.exports = (app) => {
     //      node js.
     app.get('/auth/google/callback', passport.authenticate('google'), (req, res) => {
 
+        // res.send(req.user). // => get back to the user with user info (_id, googleID)
         res.redirect('/survey');
 
     });
@@ -23,12 +28,12 @@ module.exports = (app) => {
 
         // "logout()": tells the cookieSession to detach 
         //      passport's serializeUser/deserializeUsser functions  
-        //      and to kill the user auth state stored in the cookieSession.
+        //      and to kill the user auth state, google ID and _id stored in the cookieSession.
         req.logout();
 
         // acknowlegement that "you just logged out."
         // => on the browser, it shows the empty because
-        //      the user logged out! and cookieSession is now empty.
+        //      the user logged out! and cookieSession including googleID and _id is now empty.
         
         // "reg.user": "user" document requested by the current user to be detached.
         //
@@ -44,7 +49,7 @@ module.exports = (app) => {
     // From this directory, the user is able to mange the app.
     app.get('/api/currentUser', (req, res) => {
 
-        // the user info is incomming from cookieSession containing the user document
+        // the user info is incomming to cookieSession, containing the user document
         //      through the steps of serializeUser/deserializeUser or first-time user's signup 
         // => on the brower, it shows user info
         
@@ -56,8 +61,8 @@ module.exports = (app) => {
             }
          */
         
-        // ultimately takes the user document out of the cookies or database
-        //      sends it to the user, telling "You are just logged in!"
+        // inultimately this url takes the user document out of the cookies or database
+        //      sends the result to the user, telling "You are just logged in!" or "A certain error occurred!!"
         // The reason that "req.user" is required is because google sends "res.user" not "req.body"
         // Like this.
         /**
@@ -103,19 +108,24 @@ module.exports = (app) => {
 
 }
 
-// Route Handler listens to the user access to the defined route "/auth/google".
-//      => It is a kind of the first user request.
+// Route Handler listens to the user access first in "/api/currentUser".
+//   => It should be a kind of the first user request.
+
+// If the user does not have session value of google ID, then it redirects the user to
+//      "auth/google"
+
 // Then it will try to send the info including "clientID" and "clientSecret"
 //      for the configuration.
 
-// We will not use a customized callback because we are using "passport" MW.
+// We will not use a customized callback middleware because we are using pre-builtin "passport" MW.
 // The " passport~~~ " below is to process "send" authenticate response info to
 //      google server, not back to the user.
 
 // 1) 'google', the first argument defines that the strategy defined above
-//      for the google strategis other than any other app.
-// Therefore 'google' stands for containing the information about
-//      Google's Strategy object. 
+//      for the google strategies other than any other app.
+
+    // Therefore 'google' stands for containing the information about
+    //      Google's Strategy object. 
 
 // 2) Google defines different properties for the auth.
 //    'scope' defines the properties we want? to use for auth
