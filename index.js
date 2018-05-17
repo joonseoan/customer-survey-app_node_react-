@@ -26,7 +26,7 @@ mongoose.connect(mongoURI);
 // Bear in mind that "Schema and model" class must run before
 //      its instance runs, for instance it must run 
 //      before the instance, "require('./services/passport');" 
-require('./models/user');
+require('./models/user'); 
 
 // 1)
 // const passportImported = require('./services/passport');
@@ -35,6 +35,8 @@ require('./models/user');
 // because we do not assign the "passport" component 
 //      to any other functions and variables
 // "passport" collaborately works together in background
+
+// ********* Distribute req.user to any route handlers of express server
 require('./services/passport');
 
 const app = express();
@@ -89,9 +91,7 @@ app.use(cookieSession({
     //      then we can randomly choose a key for the security reason.
     keys: [ cookieKey ]
 
-})
-
-);
+}));
 
 // The two lines below are kind of a single unified unit to execute steps above.
 
@@ -106,12 +106,13 @@ app.use(cookieSession({
 //    it puts the user info object into session 
 //    when the user accesses "/api/currentUser" for login
  
-// Also, it stop passport working on s/deserialize functions
+// Also, it stops passport working on s/deserialize functions
 //    if the user info is not available and 
 //    let it jump to the steps of the first-time user
 //    
 
 // session will finish when the user logout
+// ***** generate "user" requested by the client
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -129,7 +130,6 @@ require('./routes/billingRoutes')(app);
 const PORT = process.env.PORT || 5000;
 console.log(`starting on ${PORT}`);
 app.listen(PORT);
-
 
 // Just for studying....
  /*********************************************************************************************************

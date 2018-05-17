@@ -17,7 +17,7 @@ class Payments extends Component {
 
 			"process.env" is  another way to deliver key to the app server.
 			because react (front-end) sometimes needs 
-			to communicate with the app server like stripe without any node server.
+			to communicate with the app server like "stripe" without any node server.
 
 			As we use process.env, the react can have same variables as node server has.
 			That means the variables can share with the server.
@@ -106,7 +106,10 @@ class Payments extends Component {
 			>
 				{/* Bear in mind that html element 
 
-				is able to get into the componet element*/}
+					is able to get into the componet element
+
+				*/}
+
 				<button className = 'btn'>
 
 					Add Credits

@@ -15,7 +15,7 @@ class Header extends Component {
         // -> null
         
         // With googleID info
-        // -> error -> payload.data -> return false
+        // -> error -> payload.data = undefined -> return false
         switch(this.props.auth) {
 
             case null:
@@ -33,9 +33,20 @@ class Header extends Component {
                 //***************************************** important
                 // use an array to deploy two elements in return without <div>
                 // no map!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! map is always with the defined variable.
+                
+                // Whenever click "Add Creidts", it executes this.props.handleToken().
+                // It updates "credtis" by using express();
+                // Then, whenever, click $5.00 in stripe form, it rerender "App" which call fetchUser()
+                //      and then the credits automatically are updated. (Ajax!!!) 
                 return [ 
 
                     <li key = '1'><Payments /></li>,
+                    <li key = '3' style = {{ margin : '0 10px' }}>
+
+                        { console.log('auth: ', this.props.auth) }
+                        Credits: { this.props.auth.credits }
+                    
+                    </li>,
                     <li key = '2'><a href = '/api/logout'>Logout</a></li> 
 
                 ];

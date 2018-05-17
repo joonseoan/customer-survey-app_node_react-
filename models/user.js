@@ -6,7 +6,15 @@ const { Schema } = mongoose;
 
 const userSchema = new Schema ({
 
-    googleID : String
+    googleID : String,
+    credits : {
+
+    	type: Number,
+
+    	// defulat value of credit is "0".
+    	default : 0
+
+    }
 
 });
 

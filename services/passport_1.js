@@ -4,7 +4,6 @@ const passport = require('passport');
 const { Strategy } = require('passport-google-oauth20');
 const mongoose = require('mongoose');
 
-
 const { googleClientID, googleClientSecret } = require('../config/keys');
 
 // 'require('../models/user) should not be used 
@@ -16,9 +15,8 @@ const { googleClientID, googleClientSecret } = require('../config/keys');
 const UserID = mongoose.model('users');
 
 // ============================ "user info" setup in DB by taking advantage of user.id===============================
-// "user" : "users" model
-//      "user" is a document, mapping with 'users' model, stored in Cookie.
-// This user information (in other words, "profile.id") in cookie is 
+
+// "user" information (in other words, "profile.id") in cookie is 
 //      going to immediately attach to cookieSession 
 //      by using "serilizeUser" function.
 
@@ -26,7 +24,7 @@ const UserID = mongoose.model('users');
 // "serializeUser" is a kind of work to gets the user info by utilizing cookie storage and cookieSession
 passport.serializeUser((user, done) => {
 
-    // "user.id" is "document's id" that exists together with the targeted "profile.id" in cookie
+    // "user.id" is this "object's id" that exists together with the targeted "googleID" in cookie
     // "seriizeUser" function utilizes "_id" of a document,
     //      instead of profile.id which is exposed 
     //      during the query.
@@ -76,11 +74,12 @@ passport.deserializeUser((id, done) => {
 //  However, to work together, "index.js" must import this component by using
 //      require(directory of this file.)
 
-// "use" is a method to access GoogleStrategy 
+// "use" is a method to access GoogleStrategy middleware 
 // Then, by using "()" of the object, it makes Google configure 
 //      the authentication process for the application.
 
 /*
+
 // In order for Google to correctly configure the auth process,
 //      we need to give Google information about the application.
 // They are "client id" and "client secret"
@@ -90,6 +89,7 @@ passport.deserializeUser((id, done) => {
 // Then, Google will send them back with some (API) info for the auth process.
 // To establish this process, we need to sign up with Google OAuth.
 // Please, go to the setup doc.
+
 */
 
 // Once we finish clientID and client secret, 

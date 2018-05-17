@@ -3,19 +3,51 @@ console.log('starting billingRoutes.js');
 const keys = require('../config/keys');
 
 // "keys" is an object.
+// sent SecretKey to stripe
+
+/*
+
+[ Basic configuration ]
+
+	var stripe = require('stripe')('sk_test_...');
+	 
+	var customer = await stripe.customers.create(
+
+	  { email: 'customer@example.com' }
+
+	)
+
+*/
+
+// configuration of stripe
 const stripe = require('stripe')(keys.stripeSecretKey);
+
+const requireLogin = require('../middleware/requireLogin');
 
 module.exports = app => {
 
 	// can use Promise
 
 	// npm stripe example used a callback or Promise.
-	// However, the npm clearly specifies and recommends Promise.
-	// Therefore, anynh await can be used.
-	app.post('/api/stripe', async (req, res) => {
+	// However, "npm" clearly specifies and recommends "Promise" or chainable functions.
+	// Therefore, "async" and "await" can be used.
+	
 
-		// it is from action creator of the client, "handleToken(token)"
-		// console.log(req.body);
+	// ********* In express, it does not care about how many args it needs.
+	// 		We can put as many as m/w, args, and callback we want.
+	//		It is express a requirement.
+	app.post('/api/stripe', requireLogin, async (req, res) => {
+
+		// 401: You are not authorizd
+		// Bear in min that if the browser does not have "req.user"
+		//		it means that the user logged ou or unauthorized.
+		// req.user can get through passport/serializeUser();
+		// error is going to be in res.error!!!
+		
+		// It is deleted as we us m/w
+		// if(!req.user) return res.status(401).send({ error : 'You must log in' });
+
+		
 
 		/* npm stripe request example
 			
@@ -36,6 +68,10 @@ module.exports = app => {
 
 		*/
 
+		// it is from action creator of the client, "handleToken(token)"
+		// console.log('req.body from client:', req.body);
+		// only "id" info needed
+
 		// 2)
 		const charge = await stripe.charges.create({
 
@@ -49,7 +85,21 @@ module.exports = app => {
 
 		});
 
-			console.log('charge: ', charge);
+			// console.log('req.user: ', req.user);
+	 		// 	console.log('req.user.credits: ', req.user.credits);
+			// console.log('charge: ', charge);
+
+			
+			req.user.credits += 5;
+
+			// from "passport" m/w
+			const user = await req.user.save();
+			console.log('1. ', user)
+
+
+			// ***************We can send "user" object to the client by using variable, "user".
+			res.send(user);
+			console.log('2. ', user)
 
 		// 1)
 		// stripe.charge.create({
