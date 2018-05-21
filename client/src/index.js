@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDom from 'react-dom';
+import ReactDOM from 'react-dom';
 
 // Bear in mind again that "Provider" is a tag to interconnect
 //      react and redux to provide the state data from redux to react.
@@ -34,7 +34,7 @@ import reducers from './reducers/index';
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 //"Before: const createStoreWithMiddleware = applyMiddleware(promise)(createStore);"
 
-ReactDom.render(
+ReactDOM.render(
 
     // In react-redux environment, "Provider" which interconnect
     //      react components and redux store, are the parents of them.
