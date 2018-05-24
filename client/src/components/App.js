@@ -51,7 +51,7 @@ class App extends Component {
                     
                     <Route exact path = '/' component = { Landing } />
                     <Route exact path = '/survey' component = { dashboard } />
-                    <Route path = '/surveyView' component = { surveyView } />
+                    <Route exact path = '/surveyView' component = { surveyView } />
                     
                 </div>
 
