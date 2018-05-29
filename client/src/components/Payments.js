@@ -101,8 +101,7 @@ class Payments extends Component {
 				// give token data the server
 				// It is a variable to get 'token' object from stripe api server 
 				token = { token => this.props.handleToken(token) }
-				// stripeKey = { process.env.REACT_APP_STRIPE_KEY }
-				stripeKey = 'pk_test_Jg1vFTZIOBwQbxyPMQx4tJlu' 
+				stripeKey = { process.env.REACT_APP_STRIPE_KEY }
 			>
 				{/* Bear in mind that html element 
 
