@@ -9,9 +9,11 @@ import Header from './Header';
 import * as actions from '../actions';
 import Landing from './Landing';
 
+//const surveyView = () => <h1>surveyView</h1>;
+//   // <Route exact path = '/surveyView' component = { surveyView } />
+                  
 //const ladning = () => <h1>Landing</h1>;
 const dashboard = () => <h1>Dashboard</h1>;
-const surveyView = () => <h1>surveyView</h1>;
 
 class App extends Component {
 
@@ -51,7 +53,6 @@ class App extends Component {
                     
                     <Route exact path = '/' component = { Landing } />
                     <Route exact path = '/survey' component = { dashboard } />
-                    <Route exact path = '/surveyView' component = { surveyView } />
                     
                 </div>
 
@@ -76,6 +77,7 @@ export default connect(null, actions)(App);
  *      <div />  
  *      <div />
  * </BrowserRouter>
+
  * 
  * <BrwoserRouter> ==> correct!!!
  *      <div />  
