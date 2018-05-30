@@ -37,9 +37,6 @@ module.exports = {
 };*/
 
 
-
-
-
 /*module.exports = { 
 
 	googleClientID : '929012459244-omvku0hql66rbc1fm7ljgpfqsmsuk8fq.apps.googleusercontent.com',

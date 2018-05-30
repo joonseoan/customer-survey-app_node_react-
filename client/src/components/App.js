@@ -17,6 +17,7 @@ const dashboard = () => <h1> Dashboard </h1>;
 //
     
 class App extends Component {
+
     componentDidMount() {
 
         this.props.fetchUser();
