@@ -2,5 +2,6 @@ node_modules/
 setup
 
 dev.js
+passport_1.js
 
 preview_express_1.js
