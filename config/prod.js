@@ -14,7 +14,7 @@ const stripePublishableKey = process.env.STRIPE_PUBLISHABLE_KEY;
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 */
 
-/*module.exports = { 
+module.exports = { 
 
 	googleClientID : process.env.GOOGLE_CLIENT_ID,
 	googleClientSecret : process.env.GOOGLE_CLIENT_SECRET,
@@ -23,8 +23,9 @@ const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 	stripePublishableKey : process.env.STRIPE_PUBLISHABLE_KEY,
 	stripeSecretKey : process.env.STRIPE_SECRET_KEY
 
-};*/
+};
 
+/*
 module.exports = { 
 
 	googleClientID : GOOGLE_CLIENT_ID,
@@ -35,5 +36,6 @@ module.exports = {
 	stripeSecretKey : STRIPE_SECRET_KEY
 
 }; 
+*/
 
 // In order for the keys to be setup, please visit the document file.
