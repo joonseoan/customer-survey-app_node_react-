@@ -25,17 +25,20 @@ module.exports = {
 
 };
 
-/*
-module.exports = { 
 
-	googleClientID : GOOGLE_CLIENT_ID,
-	googleClientSecret : GOOGLE_CLIENT_SECRET,
-	mongoURI : MONGODB_URI,
-	cookieKey : COOKIE_KEY, // It can be any letter just to find the user.
-	stripePublishableKey : STRIPE_PUBLISHABLE_KEY,
-	stripeSecretKey : STRIPE_SECRET_KEY
 
-}; 
-*/
+
+
+/*module.exports = { 
+
+	googleClientID : '929012459244-omvku0hql66rbc1fm7ljgpfqsmsuk8fq.apps.googleusercontent.com',
+	googleClientSecret : 'YlDw0-kGeUoohqodFNVkd-qc',
+	mongoURI : 'mongodb://survey_subscribers:7604632tk@ds139342.mlab.com:39342/customer-survey-prod',
+	cookieKey : 'sgsdfglertyjklcvhjk', // It can be any letter just to find the user.
+	stripePublishableKey : 'pk_test_Jg1vFTZIOBwQbxyPMQx4tJlu',
+	stripeSecretKey : 'sk_test_veMH4jRWcZq5dMLg6Go3y5sh'
+
+};*/ 
+
 
 // In order for the keys to be setup, please visit the document file.
