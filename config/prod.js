@@ -14,7 +14,7 @@ const stripePublishableKey = process.env.STRIPE_PUBLISHABLE_KEY;
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 */
 
-module.exports = { 
+/*module.exports = { 
 
 	googleClientID : process.env.GOOGLE_CLIENT_ID,
 	googleClientSecret : process.env.GOOGLE_CLIENT_SECRET,
@@ -22,6 +22,17 @@ module.exports = {
 	cookieKey : process.env.COOKIE_KEY, // It can be any letter just to find the user.
 	stripePublishableKey : process.env.STRIPE_PUBLISHABLE_KEY,
 	stripeSecretKey : process.env.STRIPE_SECRET_KEY
+
+};*/
+
+module.exports = { 
+
+	googleClientID : GOOGLE_CLIENT_ID,
+	googleClientSecret : GOOGLE_CLIENT_SECRET,
+	mongoURI : MONGODB_URI,
+	cookieKey : COOKIE_KEY, // It can be any letter just to find the user.
+	stripePublishableKey : STRIPE_PUBLISHABLE_KEY,
+	stripeSecretKey : STRIPE_SECRET_KEY
 
 }; 
 

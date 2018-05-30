@@ -53,7 +53,7 @@ module.exports = app => {
 			
 			// importing module
 			var stripe = require("stripe")(
-			  "sk_test_veMH4jRWcZq5dMLg6Go3y5sh"
+			  "sk_test_*****************"
 			);
 			
 			// request
