@@ -38,7 +38,7 @@ module.exports = {
 	stripePublishableKey : 'pk_test_Jg1vFTZIOBwQbxyPMQx4tJlu',
 	stripeSecretKey : 'sk_test_veMH4jRWcZq5dMLg6Go3y5sh'
 
-};*/ 
-
+}; 
+*/
 
 // In order for the keys to be setup, please visit the document file.
