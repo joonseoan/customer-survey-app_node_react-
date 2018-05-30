@@ -1,5 +1,18 @@
+// It would be better to centralize the functions.
+   
+    ///////// "Header" also checks "token" validation but
+    //      it looks sparse that we would not esily find the functios.
+
+    // In order to make react life cycles and put the action creators together,
+    //      the class is required.
+
+    // In the updated version of react,
+    //      comonentWillMount is called several times
+    // Also, no big gap of boot-up speed between two life-cycle mehtods
+
+
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Header from './Header';
@@ -13,20 +26,10 @@ import Landing from './Landing';
 //   // <Route exact path = '/surveyView' component = { surveyView } />
                   
 //const ladning = () => <h1>Landing</h1>;
-const dashboard = () => <h1>Dashboard</h1>;
+const dashboard = () => <h1> Dashboard </h1>; 
 
+    
 class App extends Component {
-
-    // It would be better to centralize the functions.
-    // "Header" also checks "token" validation but
-    //      it looks sparse that we would not esily find the functios.
-
-    // In order to make react life cycles and put the action creators together,
-    //      the class is required.
-
-    // In the updated version of react,
-    //      comonentWillMount is called several times
-    // Also, no big gap of boot-up speed between two life-cycle mehtods
     componentDidMount() {
 
         this.props.fetchUser();
