@@ -8,6 +8,6 @@ if(process.env.NODE_ENV === 'production') {
 
     //We are in development - return the devkey.
     module.exports = require('./dev');
-    console.log('process.env.NODE_ENV: development');
+    // console.log('process.env.NODE_ENV: development');
 
 }
