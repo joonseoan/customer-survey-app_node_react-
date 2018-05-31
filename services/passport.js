@@ -1,7 +1,7 @@
 console.log('starting passport.js');
 
 const passport = require('passport');
-const { Strategy } = require('passport-google-oauth20');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const mongoose = require('mongoose');
 
 const { googleClientID, googleClientSecret } = require('../config/keys');
@@ -32,7 +32,7 @@ passport.deserializeUser((id, done) => {
 //      by using passport m/w
 passport.use(
     
-    new Strategy({
+    new GoogleStrategy ({
 
         clientID : googleClientID,
         clientSecret : googleClientSecret,
@@ -46,8 +46,9 @@ passport.use(
         if (userGoogleID) return done(null, userGoogleID); 
 
         const user = await new UserID({ googleID : profile.id }).save();      
+
         done(null, user);
             
-    })
+    });
 
 );
