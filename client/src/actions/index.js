@@ -17,7 +17,7 @@ import { FETCH_USER } from './types';
         and then redirect the user to signup url which is "/auth/google"
  
 */
-export const fetchUser = () => // {
+// {
 
     // Proxy rule again for the url.
     // Add this url for proxy in package.json
@@ -76,7 +76,9 @@ export const fetchUser = () => // {
         // By using await
         // removed "return" 
         //  "() =>"" function or value : it will automatically return it.
-        async dispatch => {
+
+
+export const fetchUser = () => async dispatch => {
 
             const res = await axios.get('/api/currentUser');
 
@@ -84,7 +86,7 @@ export const fetchUser = () => // {
             // We just need "data".
             dispatch({ type: FETCH_USER, payload: res.data });
 
-        };
+};
 
 // };
 
