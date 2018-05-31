@@ -55,8 +55,8 @@ class App extends Component {
                      
                     < Header />        
                     
-                    <Route exact path = '/' component = { Landing } />
                     <Route exact path = '/survey' component = { dashboard } />
+                    <Route exact path = '/' component = { Landing } />
                     
                 </div>
 
