@@ -25,18 +25,18 @@ const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 
 				 };
 */
-/*module.exports = { 
+module.exports = { 
 
 	googleClientID : process.env.GOOGLE_CLIENT_ID,
 	googleClientSecret : process.env.GOOGLE_CLIENT_SECRET,
-	mongoURI : process.env.MONGODB_URI,
+	mongoURI : process.env.MONGO_URI,
 	cookieKey : process.env.COOKIE_KEY, // It can be any letter just to find the user.
 	stripePublishableKey : process.env.STRIPE_PUBLISHABLE_KEY,
 	stripeSecretKey : process.env.STRIPE_SECRET_KEY
 
-};*/
+};
 
-
+/*
 module.exports = { 
 
 	googleClientID : '929012459244-omvku0hql66rbc1fm7ljgpfqsmsuk8fq.apps.googleusercontent.com',
@@ -47,6 +47,6 @@ module.exports = {
 	stripeSecretKey : 'sk_test_veMH4jRWcZq5dMLg6Go3y5sh'
 
 }; 
-
+*/
 
 // In order for the keys to be setup, please visit the document file.
