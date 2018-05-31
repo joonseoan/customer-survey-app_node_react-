@@ -1,5 +1,3 @@
-console.log('starting index.js of "server" part');
-
 const express = require('express');
 const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
@@ -10,15 +8,10 @@ const cookieSession = require('cookie-session');
 //      the first time user took.
 const passport = require('passport');
 
-// body-parser: 클라이언트의 HTTP 요청 중 POST 요청의 바디 데이터에 접근하기 위한 모듈
 const bodyParser = require('body-parser');
 
 // import key
 const { mongoURI, cookieKey } = require('./config/keys');
-
-// connect to mLab
-mongoose.Promise = global.Promise
-mongoose.connect(mongoURI);
 
 //*************************************************************************/
 // import "Schema" and "model" of mongoogse
@@ -39,6 +32,11 @@ require('./models/user');
 
 // ********* Distribute req.user to any route handlers of express server
 require('./services/passport');
+
+// connect to mLab
+mongoose.Promise = global.Promise
+mongoose.connect(mongoURI);
+
 
 const app = express();
 
