@@ -74,7 +74,7 @@ class Header extends Component {
                     {/*<a href = "#" className = 'left brand-logo'> 
                         Instead of anchor tag, Link can set up the route depending on the environment.
                     */}
-                    <Link to = {this.props.auth ? '/survey' : '/'} 
+                    <Link to = {this.props.auth ? '/surveys' : '/'} 
                           className = 'left brand-logo'
 
                     >
