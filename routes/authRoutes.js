@@ -25,7 +25,7 @@ module.exports = app => {
         //console.log('req.user from passport middleware: ', req.user);
 
         // res.send(req.user). // => get back to the user with user info (_id, googleID)
-        res.redirect('/survey');
+        res.redirect('/');
 
     });
 
