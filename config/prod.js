@@ -8,13 +8,13 @@
 
 const googleClientID = process.env.GOOGLE_CLIENT_ID;
 const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET;
-const mongoURI = process.env.MONGODB_URI;
+const mongoURI = process.env.MONGO_URI;
 const cookieKey = process.env.COOKIE_KEY; // It can be any letter just to find the us
 const stripePublishableKey = process.env.STRIPE_PUBLISHABLE_KEY;
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 
 
-/*module.exports = {  
+module.exports = {  
 				
 					googleClientID,
 					googleClientSecret, 
@@ -24,8 +24,8 @@ const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 					stripeSecretKey
 
 				 };
-*/
-module.exports = { 
+
+/*module.exports = { 
 
 	googleClientID : process.env.GOOGLE_CLIENT_ID,
 	googleClientSecret : process.env.GOOGLE_CLIENT_SECRET,
@@ -34,7 +34,7 @@ module.exports = {
 	stripePublishableKey : process.env.STRIPE_PUBLISHABLE_KEY,
 	stripeSecretKey : process.env.STRIPE_SECRET_KEY
 
-};
+};*/
 
 /*
 module.exports = { 
