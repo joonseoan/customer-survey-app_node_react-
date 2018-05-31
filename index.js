@@ -17,6 +17,7 @@ const bodyParser = require('body-parser');
 const { mongoURI, cookieKey } = require('./config/keys');
 
 // connect to mLab
+mongoose.Promise = global.Promise
 mongoose.connect(mongoURI);
 
 //*************************************************************************/
@@ -149,7 +150,7 @@ if (process.env.NODE_ENV === 'production') {
     // Then responde with index.html.
     app.get('*', (req, res) => {
     
-        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
     
     });
 }
