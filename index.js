@@ -22,6 +22,10 @@ const { mongoURI, cookieKey } = require('./config/keys');
 //      before the instance, "require('./services/passport');" 
 require('./models/user'); 
 
+// Execute mongoose model!!!
+// It has nothing to modules inherited.
+require('./models/survey');
+
 // 1)
 // const passportImported = require('./services/passport');
 
@@ -125,6 +129,7 @@ app.use(passport.session());
 // **********************************************************************8 */
 require('./routes/authRoutes')(app);
 require('./routes/billingRoutes')(app);
+require('./routes/surveyRoutes')(app);
 
 // setup by heroku
 if (process.env.NODE_ENV === 'production') {
