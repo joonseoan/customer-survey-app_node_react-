@@ -12,7 +12,7 @@ const mongoURI = process.env.MONGO_URI;
 const cookieKey = process.env.COOKIE_KEY; // It can be any letter just to find the us
 const stripePublishableKey = process.env.STRIPE_PUBLISHABLE_KEY;
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
-
+const sendGridKey = process.env.SEND_GRID_KEY;
 
 module.exports = {  
 				
@@ -21,7 +21,8 @@ module.exports = {
 					mongoURI,
 					cookieKey,
 					stripePublishableKey,
-					stripeSecretKey
+					stripeSecretKey,
+					sendGridKey
 
 				 };
 

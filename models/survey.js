@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
+
+// It is a pure schema. Not a model.
 const recipientSchema = require('./recipients');
-console.log('[recipientSchema]: ', recipientSchema)
 
 const surveySchema = new Schema({
 
@@ -14,6 +15,27 @@ const surveySchema = new Schema({
 	//recipients: [String],
 	// *******The array containing the object of Schema from "./recipients"
 	// it consists of property values returned from mongoose Schema.
+	
+	/*recipients : [
+		
+		// instances to "
+			
+			new Schema({
+
+				email : String,
+				responded : {
+
+					type: Boolean,
+					default: false
+				
+				}
+		
+			"
+
+	]
+	*/
+	// Therefore, the elements of this array are
+	//		 return values of Schema object
 	recipients : [ recipientSchema ],
 
 	// It is a way of model
@@ -33,4 +55,5 @@ const surveySchema = new Schema({
 
 });
 
+// insert survySchema with property name of ['surveys'] into a "model" property.
 mongoose.model('surveys', surveySchema);

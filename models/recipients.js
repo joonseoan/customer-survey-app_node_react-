@@ -14,6 +14,6 @@ const recipientSchema = new Schema({
 });
 
 // without model to be placed in the field of survey
-module.exports = 'recipientSchema';
+module.exports = recipientSchema;
 
 
