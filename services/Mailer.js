@@ -1,4 +1,4 @@
-const sendgrid = require('sendgrid');
+ const sendgrid = require('sendgrid');
 
 // get sendgrid object's mail property.
 const helper = sendgrid.mail;
@@ -6,7 +6,8 @@ const helper = sendgrid.mail;
 const keys = require ('../config/keys');
 
 // mail.Mail property..
-console.log('mail.Mail', helper.Mail);
+// console.log('mail.Mail', helper.Mail);
+
 class Mailer extends helper.Mail {
 
 	// ************{ subject, recipients } : deconstructor of "survey" object.
@@ -16,13 +17,15 @@ class Mailer extends helper.Mail {
 
 		super();
 
+		// send key to sendGrid and then get communication with sendgrid. 
+		this.sgApi = sendgrid(keys.sendGridKey); 
+
 		// Therefore, "Email" lib, a property of helper(sendgrid.mail)
 		//		 is a function constructor
-
 		this.from_email = new helper.Email('no-reply@customer_survey.com');	
 		
 		this.subject = subject;
-
+	
 		// "contents" is a html format
 		// In case that the class is inherited from helper.Mail,
 		//		it still can utilize "Content" lib, a property 
@@ -47,6 +50,9 @@ class Mailer extends helper.Mail {
 		//	 	an array.
 		// Keep in mind that when deconstructing in parameters,
 		//		*****************it must have ()!!!!!
+		// recipients : recipients.split(',').map(email => ({ email : email.trim() }))
+		//		it returns objects containing email. So we can deconstruct to pull out
+		//		property.
 		return recipients.map(({ email }) => {
 
 			// store the surveyees's email.
@@ -58,12 +64,53 @@ class Mailer extends helper.Mail {
 
 	addClickTracking() {
 
+		
+
 		// all down below are from sendgrid's built in libs 
 		const trackingSettings = new helper.TrackingSettings();
-		const clickTracking = new helper.clickTracking(true, true);
+		const clickTracking = new helper.ClickTracking(true, true); //helper.ClickTracking
 
 		trackingSettings.setClickTracking(clickTracking);
 		this.addTrackingSettings(trackingSettings);	
+	
+	}
+
+	addRecipients() {
+
+		const personalize = new helper.Personalization();
+
+		// why not map??
+		this.recipients.forEach(recipient => {
+
+			console.log('recipient', recipient);
+
+		   // addTo() is a function of "new helper.Personalization()" from sendgrid
+			personalize.addTo(recipient);
+			
+		});
+
+		// addPersonalization() from sendgrid
+		this.addPersonalization(personalize);
+		
+	}
+
+	async send() {
+
+		const request = await this.sgApi.emptyRequest({
+
+			method: 'POST',
+			path : '/v3/mail/send',
+			body: this.toJSON()
+			//console.log(this);
+		
+		});
+
+		const response = await this.sgApi.API(request);
+		
+		return response; 
+
 	}
 
 }
+
+module.exports = Mailer;

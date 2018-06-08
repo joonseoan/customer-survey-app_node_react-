@@ -30,6 +30,12 @@ import reduxThunk from 'redux-thunk';
 import App from './components/App';
 import reducers from './reducers/index';
 
+import axios from 'axios';
+
+// "axios" is assigned to "window" object.
+window.axios = axios; 
+
+
 // Define store and data-pulling-out middleware in Redux
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 //"Before: const createStoreWithMiddleware = applyMiddleware(promise)(createStore);"

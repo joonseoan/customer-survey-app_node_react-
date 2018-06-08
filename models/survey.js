@@ -57,3 +57,4 @@ const surveySchema = new Schema({
 
 // insert survySchema with property name of ['surveys'] into a "model" property.
 mongoose.model('surveys', surveySchema);
+

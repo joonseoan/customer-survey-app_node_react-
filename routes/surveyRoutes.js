@@ -1,3 +1,8 @@
+
+
+
+console.log('ROUTE~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`');
+
 const mongoose = require('mongoose');
 
 const requireLogin = require('../middleware/requireLogin');
@@ -21,7 +26,7 @@ const Survey = mongoose.model('surveys');
 module.exports = app => {
 
 	// we can add middleware in order required in the app flow
-	app.post('api/surveys', requireLogin, requireCredits, (req, res) => {
+	app.post('/api/surveys', requireLogin, requireCredits, async (req, res) => {
 
 		// new properties are created inside "req.body" by the user who posts the data
 		const { title, subject, body, recipients } = req.body;
@@ -29,7 +34,6 @@ module.exports = app => {
 		// creating a memory space for the object or collection
 		// 		by building instance to create and access to the properties
 		const survey = new Survey ({
-
 			title,
 			subject,
 			body,
@@ -48,7 +52,10 @@ module.exports = app => {
 		// 'surveyTemplate' = return value of surveyTemplate(survey) 
 		//		that stands for a body field from the user
 		const mailer = new Mailer(survey, surveyTemplate(survey));
-
+		
+		// get "send()" method in Mailer class.
+		mailer.send();
+	
 	});
 
 };
