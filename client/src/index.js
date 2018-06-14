@@ -30,10 +30,10 @@ import reduxThunk from 'redux-thunk';
 import App from './components/App';
 import reducers from './reducers/index';
 
-import axios from 'axios';
+//import axios from 'axios';
 
 // "axios" is assigned to "window" object.
-window.axios = axios; 
+// window.axios = axios; 
 
 
 // Define store and data-pulling-out middleware in Redux
