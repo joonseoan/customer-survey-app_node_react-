@@ -37,6 +37,7 @@ const surveySchema = new Schema({
 	*/
 	// Therefore, the elements of this array are
 	//		 return values of Schema object
+	// Can Schema return value of Schema???
 	recipients : [ recipientSchema ],
 
 	// It is a way of model

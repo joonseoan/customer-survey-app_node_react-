@@ -16,7 +16,7 @@ const recipientSchema = new Schema({
 
 // without model to be placed in the field of survey
 //  to be exported and placed in another schema.
-console.log('recipientSchema: ', recipientSchema);
+// console.log('recipientSchema: ', recipientSchema);
 /* 
  Schema {
 [0]   obj:

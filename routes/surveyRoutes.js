@@ -1,5 +1,3 @@
-//console.log('ROUTE~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`');
-
 const mongoose = require('mongoose');
 
 const requireLogin = require('../middleware/requireLogin');
@@ -31,12 +29,14 @@ module.exports = app => {
 		// creating a memory space for the object or collection
 		// 		by building instance to create and access to the properties
 		const survey = new Survey ({
+			
 			title,
 			subject,
 			body,
-			//({email}) => () is like return(); for javascript engine to clearify it
 
-			// need to verify "recipients.split(',')""
+			//({email}) => () is like return(); for javascript engine to clearify it
+			// need to verify "recipients.split(',')"" => string => array based on ","
+			// Still no response is defined yet.!!!! Don't be confused.
 			recipients : recipients.split(',').map(email => ({ email : email.trim() })),
 			// assins "req.user.id" in req header
 			_user : req.user.id,

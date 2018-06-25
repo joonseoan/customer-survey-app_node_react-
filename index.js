@@ -22,7 +22,7 @@ const app = express();
 // Bear in mind that "Schema and model" class must run before
 //      its instance runs, for instance it must run 
 //      before the instance, "require('./services/passport');" 
-require('./models/user'); 
+require('./models/User'); 
 
 // Execute mongoose model!!!
 // It has nothing but modules inherited.

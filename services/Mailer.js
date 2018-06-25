@@ -1,4 +1,4 @@
- const sendgrid = require('sendgrid');
+const sendgrid = require('sendgrid');
 
 // get sendgrid object's mail property.
 const helper = sendgrid.mail;
@@ -11,7 +11,7 @@ const keys = require ('../config/keys');
 class Mailer extends helper.Mail {
 
 	// ************{ subject, recipients } : deconstructor of "survey" object.
-	//		which have the value from the user.
+	//		which has the value from the user.
 	// "contents" return value of "surveyTemplate(survey)"" 
 	constructor({ subject, recipients }, content) {
 
@@ -27,9 +27,6 @@ class Mailer extends helper.Mail {
 		this.subject = subject;
 	
 		// "contents" is a html format
-		// In case that the class is inherited from helper.Mail,
-		//		it still can utilize "Content" lib, a property 
-		//		of helper defined up and above.
 		this.body = new helper.Content('text/html', content);
 		this.recipients = this.formatAddresses(recipients);
 		this.addClickTracking();
@@ -40,6 +37,8 @@ class Mailer extends helper.Mail {
 		this.addContent(this.body);
 
 		this.addRecipients();
+
+		// console.log('helper.Mail: ^^^^^^^^^', heper.Mail);
 
 	}
 

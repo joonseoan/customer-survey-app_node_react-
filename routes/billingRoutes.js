@@ -1,5 +1,3 @@
-console.log('starting billingRoutes.js');
-
 const keys = require('../config/keys');
 
 // "keys" is an object.
@@ -69,7 +67,7 @@ module.exports = app => {
 		*/
 
 		// it is from action creator of the client, "handleToken(token)"
-		// console.log('req.body from client:', req.body);
+		console.log('req.body from client:', req.body);
 		// only "id" info needed
 
 		// 2)
@@ -79,8 +77,6 @@ module.exports = app => {
 			amount: 500, // $5
 			currency: 'usd',
 			description: '$5 for 5 credits',
-
-			// console.log('req.body', req.body);
 			source:req.body.id
 
 		});
