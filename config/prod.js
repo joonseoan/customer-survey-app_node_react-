@@ -13,6 +13,7 @@ const cookieKey = process.env.COOKIE_KEY; // It can be any letter just to find t
 const stripePublishableKey = process.env.STRIPE_PUBLISHABLE_KEY;
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 const sendGridKey = process.env.SEND_GRID_KEY;
+const redirectDomain = process.env.REDIRECT_DOMAIN;
 
 module.exports = {  
 				
@@ -22,7 +23,8 @@ module.exports = {
 					cookieKey,
 					stripePublishableKey,
 					stripeSecretKey,
-					sendGridKey
+					sendGridKey,
+					redirectDomain
 
 				 };
 

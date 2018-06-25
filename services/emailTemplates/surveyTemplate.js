@@ -1,3 +1,7 @@
+const keys = require('../../config/keys');
+
+console.log('key: ', keys.redirectDomain);
+
 module.exports = survey => {
 
 	// renders the survey's body.
@@ -14,10 +18,10 @@ module.exports = survey => {
 					<!-- Need to understand what "survey.body" -->
 					<p>${survey.body}</p>
 					<div>
-						<a href="http://localhost:3000">Yes</a>
+						<a href="${keys.redirectDomain}api/surveys/thankyou">Yes</a>
 					</div>
 					<div>
-						<a href="http://localhost:3000">No</a>
+						<a href="${keys.redirectDomain}api/surveys/thankyou">No</a>
 					</div>
 				</div>
 			</body>

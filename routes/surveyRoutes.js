@@ -20,6 +20,13 @@ const Survey = mongoose.model('surveys');
 
 module.exports = app => {
 
+	// Thank you for survey
+	app.get('/api/surveys/thankyou', (req, res) => {
+
+		res.send('Thank you for your voting');
+
+	});
+
 	// we can add middleware in order required in the app flow
 	app.post('/api/surveys', requireLogin, requireCredits, async (req, res) => {
 
@@ -29,7 +36,7 @@ module.exports = app => {
 		// creating a memory space for the object or collection
 		// 		by building instance to create and access to the properties
 		const survey = new Survey ({
-			
+
 			title,
 			subject,
 			body,
@@ -49,10 +56,29 @@ module.exports = app => {
 		// 'surveyTemplate' = return value of surveyTemplate(survey) 
 		//		that stands for a body field from the user
 		const mailer = new Mailer(survey, surveyTemplate(survey));
-		
-		// get "send()" method in Mailer class.
-		mailer.send();
 	
+		// Asyncronous will have troubles
+		try {
+
+			// get "send()" method in Mailer class.
+			await mailer.send();
+			
+			// survey is stored in database
+			await survey.save();
+
+			// When the email is successfully done, it substract 1.
+			req.user.credits -= 1;
+
+			const user = await req.user.save(); 
+
+			res.send(user);
+	
+		} catch (err) {
+
+			// 422: something wrong transferring or manipulating data
+			res.status(422).send(err);
+		}
+		
 	});
 
 };

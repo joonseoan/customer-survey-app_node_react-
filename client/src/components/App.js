@@ -2,19 +2,20 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import * as actions from '../actions';
+
 import Header from './Header';
 
 // * : pulls out all action creators in actions/index.js
 //      then put them all in an "actions" ****** object.
-import * as actions from '../actions';
 import Landing from './Landing';
+import Dashboard from './Dashboard';
 
-//const surveyView = () => <h1>surveyView</h1>;
-//   // <Route exact path = '/surveyView' component = { surveyView } />
+const surveyNew = () => <h1>surveyNew</h1>;
                   
 //const ladning = () => <h1>Landing</h1>;
-const dashboard = () => <h1> Dashboard </h1>; 
-//
+// const dashboard = () => <h1> Dashboard </h1>; 
+
     
 class App extends Component {
 
@@ -53,11 +54,10 @@ class App extends Component {
         
                 <div>
                      
-                    < Header />        
-                    
-                    <Route exact path='/' component = { Landing } />
-                    
-                    <Route exact path='/surveys' component = { dashboard } />
+                    <Header />                            
+                    <Route exact path="/" component = { Landing } />
+                    <Route exact path="/surveys" component = { Dashboard } />
+                    <Route path="/surveys/new" component = { surveyNew } />
 
                 </div>
 
@@ -65,8 +65,6 @@ class App extends Component {
         </div>
 
     );
-
-
 
     }
     
