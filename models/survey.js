@@ -13,10 +13,11 @@ const surveySchema = new Schema({
 	// 1)
 	// **** It is a way to define types inside of String
 	//recipients: [String],
-	// *******The array containing the object of Schema from "./recipients"
-	// it consists of property values returned from mongoose Schema.
+	// *******The array containing the Schema object is from "./recipients"
+	// It consists of property values returned from mongoose Schema.
 	
-	/*recipients : [
+	/*
+	recipients : [
 		
 		// instances to "
 			
@@ -50,6 +51,7 @@ const surveySchema = new Schema({
 		// ***Refers to "User" ObjectId!!!!
 		ref : 'User'
 	},
+	
 	dateSent : Date,
 	dateResponded : Date
 

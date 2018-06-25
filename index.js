@@ -17,13 +17,15 @@ const { mongoURI, cookieKey } = require('./config/keys');
 // import "Schema" and "model" of mongoogse
 // ************************************************************************
 
+const app = express();
+
 // Bear in mind that "Schema and model" class must run before
 //      its instance runs, for instance it must run 
 //      before the instance, "require('./services/passport');" 
 require('./models/user'); 
 
 // Execute mongoose model!!!
-// It has nothing to modules inherited.
+// It has nothing but modules inherited.
 require('./models/survey');
 
 // 1)
@@ -33,15 +35,11 @@ require('./models/survey');
 // because we do not assign the "passport" component 
 //      to any other functions and variables
 // "passport" collaborately works together in background
-
-// ********* Distribute req.user to any route handlers of express server
 require('./services/passport');
 
 // connect to mLab
 mongoose.Promise = global.Promise
 mongoose.connect(mongoURI);
-
-const app = express();
 
 /**************************************** cookieSession Setup for express route*******************************************************************
  * 
@@ -56,8 +54,8 @@ const app = express();
  *        
  *          - Simultanously, cookieSession tries to pull out the user info out of "Cookie", a storage
  *          
- *          - Then, passport will try to find the document, an object containing "profile.id"
- *               to get document's "_id" of "req.session" to grant "req.user" of the current user.
+ *          - Then, passport will try to find the document, an object containing "profile.id".
+ *               To get document's "_id" of "req.session" to grant "req.user" of the current user.
  *               
  *              1) If the profile.id is available in DB, it runs serializeUser/desrializeUser
  *                  to get the user info and its user.id and then grant the user app management.
@@ -79,7 +77,8 @@ const app = express();
 
 */
 
-// When using "POST", the server will not read "req.body"
+// When using "POST", HTTP can't deliver the object.
+// HTTP only delivers Json format. Therefore, we are required to import body-parser.
 // Therefore, we need "body-parser" then change it to json format. 
 app.use(bodyParser.json());
 
@@ -99,19 +98,6 @@ app.use(cookieSession({
 
 // Then, app tells passport
 //      we shoud check that cookieSession still maintains the user info.
-
-// To do so, cookieSession in express "app" makes the passport implement s/deserializeUser functions run first
-//      and then check up the session status that the user info is available,
-//      when passport initialize authentication work.
-
-// If the user info based on profile.id is available,
-//    it puts the user info object into session 
-//    when the user accesses "/api/currentUser" for login
- 
-// Also, it stops passport working on s/deserialize functions
-//    if the user info is not available and 
-//    let it jump to the steps of the first-time user
-//    
 
 // session will finish when the user logout
 // ***** generate "user" requested by the client
@@ -155,6 +141,7 @@ if (process.env.NODE_ENV === 'production') {
         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
     
     });
+
 }
 
 const PORT = process.env.PORT || 5000;

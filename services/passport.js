@@ -1,10 +1,9 @@
-console.log('starting passport.js');
-
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const mongoose = require('mongoose');
 
 const { googleClientID, googleClientSecret } = require('../config/keys');
+
 const UserID = mongoose.model('users');
 
 // "user" object copied and stored in cookie"
@@ -27,7 +26,6 @@ passport.deserializeUser((id, done) => {
 });
 
 // Otherwise.....redirect to Google Signup....
-
 // ******* It creates "user" that requested by the client
 //      by using passport m/w
 passport.use(
@@ -43,7 +41,11 @@ passport.use(
 
        const userGoogleID = await UserID.findOne({ googleID : profile.id });
 
-       if (userGoogleID) return done(null, userGoogleID); 
+       if (userGoogleID) {
+
+            return done(null, userGoogleID);
+
+       }  
 
        const user = await new UserID({ googleID : profile.id }).save();      
 
@@ -52,3 +54,5 @@ passport.use(
     })
 
 );
+
+// console.log('passport: ', passport);

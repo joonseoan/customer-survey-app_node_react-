@@ -98,7 +98,7 @@ module.exports = app => {
         
         res.send(req.user);
 
-        console.log('req.user: ', req.user);
+        // console.log('req.user: ', req.user);
         // console.log('req.body: ', req.body);
         // res.send(req.body);
         

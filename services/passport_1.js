@@ -1,14 +1,9 @@
-console.log('starting passport.js');
-
 const passport = require('passport');
 const { Strategy } = require('passport-google-oauth20');
 const mongoose = require('mongoose');
 
 const { googleClientID, googleClientSecret } = require('../config/keys');
 
-// 'require('../models/user) should not be used 
-//      because different mongooses with different schema can be used
-//      in big applications or development environment.
 // In order to take the specific mongoose in, 
 //      it would be better to use mongoose's model name, 'users'.
 // "UserID" is an instance to access the documents of 'user' model.
@@ -78,20 +73,6 @@ passport.deserializeUser((id, done) => {
 // Then, by using "()" of the object, it makes Google configure 
 //      the authentication process for the application.
 
-/*
-
-// In order for Google to correctly configure the auth process,
-//      we need to give Google information about the application.
-// They are "client id" and "client secret"
-
-// For instance, we need to inform Google 
-//      where the users are from and which app they are using for the auth.
-// Then, Google will send them back with some (API) info for the auth process.
-// To establish this process, we need to sign up with Google OAuth.
-// Please, go to the setup doc.
-
-*/
-
 // Once we finish clientID and client secret, 
 //      we need to inform Google both.
 passport.use(
@@ -114,7 +95,7 @@ passport.use(
         // However, when we use the server, google Stragegy
         //      is not able to correctly understand the domain proxy url.
         // For instance, heroku's url for redirection is "https" ~/auth/google/callback.
-        // Because because google Strategy matches and redirect the url with this specified callback url,
+        // Because google Strategy matches and redirects the url with this specified callback url,
         //      it can be confused with the "http" because the proxy url is not trusted in google Strategy side.
         
         // 1) Solution one :Specify two full urls for both the heroku server and the localhost.
@@ -144,7 +125,6 @@ passport.use(
         //      it will update "accessToken"
         // console.log('refreshToken: ', refreshToken);
 
-        
         // Literally, "profile" contains my all profile info.
         // We will mainly take care of this.
         // console.log('profile: ', profile);

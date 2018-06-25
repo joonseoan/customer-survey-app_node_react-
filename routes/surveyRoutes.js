@@ -1,7 +1,4 @@
-
-
-
-console.log('ROUTE~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`');
+//console.log('ROUTE~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`');
 
 const mongoose = require('mongoose');
 

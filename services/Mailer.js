@@ -13,7 +13,7 @@ class Mailer extends helper.Mail {
 	// ************{ subject, recipients } : deconstructor of "survey" object.
 	//		which have the value from the user.
 	// "contents" return value of "surveyTemplate(survey)"" 
-	constructor({ subject, recipients}, content) {
+	constructor({ subject, recipients }, content) {
 
 		super();
 
@@ -63,8 +63,6 @@ class Mailer extends helper.Mail {
 	}	
 
 	addClickTracking() {
-
-		
 
 		// all down below are from sendgrid's built in libs 
 		const trackingSettings = new helper.TrackingSettings();
