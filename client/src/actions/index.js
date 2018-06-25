@@ -80,7 +80,7 @@ import { FETCH_USER } from './types';
 
 export const fetchUser = () => async dispatch => {
 
-            const res = await axios.get('/api/currentUser');
+            const res = await axios.get('/api/current_user');
 
             // "res" includes all data including header, body and so on.
             // We just need "data".
