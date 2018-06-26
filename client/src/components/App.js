@@ -10,12 +10,7 @@ import Header from './Header';
 //      then put them all in an "actions" ****** object.
 import Landing from './Landing';
 import Dashboard from './Dashboard';
-
-const surveyNew = () => <h1>surveyNew</h1>;
-                  
-//const ladning = () => <h1>Landing</h1>;
-// const dashboard = () => <h1> Dashboard </h1>; 
-
+import SurveyNew from './surveys/SurveyNew';
     
 class App extends Component {
 
@@ -57,7 +52,7 @@ class App extends Component {
                     <Header />                            
                     <Route exact path="/" component = { Landing } />
                     <Route exact path="/surveys" component = { Dashboard } />
-                    <Route path="/surveys/new" component = { surveyNew } />
+                    <Route path="/surveys/new" component = { SurveyNew } />
 
                 </div>
 
