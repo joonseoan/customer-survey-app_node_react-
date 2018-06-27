@@ -47,14 +47,15 @@ class Header extends Component {
                         Credits: { this.props.auth.credits }
                     
                     </li>,
-                    <li>
-                        <Link key='3' to = '/api/logout'>
-                            Logout
-                        </Link>
-                    {/* <li ><a href = '/api/logout'>Logout</a></li> */} 
                     
-                    </li>
-
+                    // <li key='3'>
+                    //     <Link to = '/api/logout'>
+                    //         Logout
+                    //     </Link>
+                        
+                    // </li>
+                        
+                    <li key='3' ><a href = '/api/logout'>Logout</a></li>
                 ];
 
         }
@@ -62,6 +63,8 @@ class Header extends Component {
     }
 
     render() {
+
+        const title = 'Customer Survey';
 
         return (
             
@@ -77,12 +80,12 @@ class Header extends Component {
             
                 <div className = 'nav-wrapper'>
                     
-                    <Link to = { this.props.auth ? '/surveys' : '/'} 
-                          className = 'left brand-logo'
-                    >
-                        Customer Survey
-                    
-                    </Link>
+                <span className = 'left brand-logo'>
+                    { 
+                        this.props.auth ? <a href = '/surveys'>{title}</a> 
+                            : <a href = '/'>{title}</a> 
+                    }
+                </span>
 
                     <ul className = 'right'>
 
@@ -106,3 +109,15 @@ function mapStateToProps({ auth }) {
 }
 
 export default connect(mapStateToProps)(Header);
+
+
+/* 
+<Link to = {this.props.auth ? '/surveys' : '/'} 
+                          className = 'left brand-logo'
+                    >
+                        Customer Survey
+                    
+                    </Link>
+
+ 
+*/
