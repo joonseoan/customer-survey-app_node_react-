@@ -206,5 +206,17 @@ __proto__
 :
 Object
 
-
+    
 */
+
+
+export const submitSurvey = (values, history) => async dispatch => {
+
+    const res = await axios.post('/api/surveys', values);
+
+    // history : stores navigation logs.
+    history.push('/surveys');
+    // get "res" after posts some data to the server.
+    dispatch({ type: FETCH_USER, payload: res.data });
+     
+};
