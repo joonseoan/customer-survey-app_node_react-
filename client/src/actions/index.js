@@ -94,7 +94,7 @@ export const fetchUser = () => async dispatch => {
 // Should deal together with the auth. Not separately.
 export const handleToken = token => async dispatch => {
 
-    console.log('stripe token: ', token) // ***** find the object below.
+    // console.log('stripe token: ', token) // ***** find the object below.
 
     // token flies through "req.body" in header to the server
     const res = await axios.post('/api/stripe', token);

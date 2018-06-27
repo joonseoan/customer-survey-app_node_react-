@@ -22,7 +22,7 @@ module.exports = app => {
         //      because the middleware contains "find()" to indentify ???
         //console.log('req.user from passport middleware: ', req.user);
 
-        console.log('req.user(callback): ', req.user);
+        //console.log('req.user(callback): ', req.user);
         // res.send(req.user). // => get back to the user with user info (_id, googleID)
         
         res.redirect('/surveys');
@@ -35,7 +35,7 @@ module.exports = app => {
         // "logout()": tells the cookieSession to detach 
         //      passport's serializeUser/deserializeUsser functions  
         //      and to kill the user auth state, google ID and _id stored in the cookieSession.
-        console.log('req.user(logout)', req.user);
+        //console.log('req.user(logout)', req.user);
         req.logout();
 
 
