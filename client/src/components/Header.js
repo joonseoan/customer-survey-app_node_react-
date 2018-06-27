@@ -20,6 +20,7 @@ class Header extends Component {
 
             case null:
 
+                // nothing to do
                 return;
 
             case false:
@@ -41,13 +42,18 @@ class Header extends Component {
                 return [ 
 
                     <li key = '1'><Payments /></li>,
-                    <li key = '3' style = {{ margin : '0 10px' }}>
+                    <li key = '2' style = {{ margin : '0 10px' }}>
 
-                        { console.log('auth: ', this.props.auth) }
                         Credits: { this.props.auth.credits }
                     
                     </li>,
-                    <li key = '2'><a href = '/api/logout'>Logout</a></li> 
+                    <li>
+                        <Link key='3' to = '/api/logout'>
+                            Logout
+                        </Link>
+                    {/* <li ><a href = '/api/logout'>Logout</a></li> */} 
+                    
+                    </li>
 
                 ];
 
@@ -71,17 +77,12 @@ class Header extends Component {
             
                 <div className = 'nav-wrapper'>
                     
-                    {/*<a href = "#" className = 'left brand-logo'> 
-                        Instead of anchor tag, Link can set up the route depending on the environment.
-                    */}
-                    <Link to = {this.props.auth ? '/surveys' : '/'} 
+                    <Link to = { this.props.auth ? '/surveys' : '/'} 
                           className = 'left brand-logo'
-
                     >
                         Customer Survey
                     
                     </Link>
-                    {/* </a> */}
 
                     <ul className = 'right'>
 

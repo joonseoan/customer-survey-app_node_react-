@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
-const cors = require('cors');
+// const cors = require('cors');
 
 // In order to maintain the session,
 //      by telling "passport" of the auth state
@@ -19,7 +19,7 @@ const { mongoURI, cookieKey } = require('./config/keys');
 // ************************************************************************
 
 const app = express();
-app.use(cors());
+// app.use(cors());
 
 // Bear in mind that "Schema and model" class must run before
 //      its instance runs, for instance it must run 

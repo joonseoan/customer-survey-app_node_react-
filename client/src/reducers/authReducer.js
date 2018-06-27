@@ -1,14 +1,20 @@
+// Synce redux-thunk is used,
+//	we can group the actions based on TYPE.
+// Depending on action.TYPE in the group,
+//	in other words, if the action.TYPE in the group is same,
+//	we can use the same reducers and same redux store.
+
 import { FETCH_USER } from '../actions/types';
 
 export default function ( state = null, action) {
 
-	console.log('action: ', action);
-
-    switch(action.type) {
+	//console.log('action: ', action);
+	
+	switch(action.type) {
 
     	// In order to give better ux info to the user (it is my opinion, though)
     	// 		We should break down authentication processes into 3 parts:
-    	//		- Request : it can be a logn time -> the user needs to notice the state
+    	//		- Request : it can be a login time -> the user needs to notice the state
     	//		- Request complete : Now, the user notice he/she just logged in
     	//		- Reject : the user notices he/she failed to log in
     	// Withouth the work up above, the user can be confused 
@@ -27,10 +33,11 @@ export default function ( state = null, action) {
     		// In this case when the googleID is not available, return "false"
     		//		then let the user get googleID again.
     		// "false" : not available
-            console.log('action.payload: ', action.payload);
+            // console.log('action.payload: ', action.payload);
     		return action.payload || false;
 
-        default:
+		default:
+		
             return state;
 
     }

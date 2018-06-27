@@ -23,43 +23,45 @@ class App extends Component {
     render() {
 
         // It would be better to centralize the functions.
-   
-    ///////// "Header" also checks "token" validation but
-    //      it looks sparse that we would not esily find the functios.
+    
+        ///////// "Header" also checks "token" validation but
+        //      it looks sparse that we would not esily find the functios.
 
-    // In order to make react life cycles and put the action creators together,
-    //      the class is required.
+        // In order to make react life cycles and put the action creators together,
+        //      the class is required.
 
-    // In the updated version of react,
-    //      comonentWillMount is called several times
-    // Also, no big gap of boot-up speed between two life-cycle mehtods
+        // In the updated version of react,
+        //      comonentWillMount is called several times
+        // Also, no big gap of boot-up speed between two life-cycle mehtods
 
-
-        // => {__esModule: true}
-        console.log('actions in App: ', actions);
+        // => {__esModule: true} actions from "import * as actions from '../actions';" 
+        // console.log('actions in App: ', actions);
 
         // this.props including "fetchUser dispatch fuction"
         // => {fetchUser: ƒ}
-        console.log('this.props: ', this.props)
+        // this.props encloses all "actions" component.
+        // console.log('this.props: ', this.props)
         
         return (
         
         <div  className = 'container'>
+    
             <BrowserRouter>
         
                 <div>
                      
                     <Header />                            
-                    <Route exact path="/" component = { Landing } />
-                    <Route exact path="/surveys" component = { Dashboard } />
-                    <Route path="/surveys/new" component = { SurveyNew } />
+                    <Route exact path = '/' component = { Landing } />
+                    <Route exact path = '/surveys' component = { Dashboard } />
+                    <Route path = "/surveys/new" component = { SurveyNew } />
 
                 </div>
 
             </BrowserRouter>
-        </div>
+        
+            </div>
 
-    );
+        );
 
     }
     
