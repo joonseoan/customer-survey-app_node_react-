@@ -80,13 +80,13 @@ class Header extends Component {
             
                 <div className = 'nav-wrapper'>
                     
-                <span className = 'left brand-logo'>
-                    { 
-                        this.props.auth ? <a href = '/surveys'>{title}</a> 
-                            : <a href = '/'>{title}</a> 
-                    }
-                </span>
-
+                    <Link to = {this.props.auth ? '/surveys' : '/'} 
+                            className = 'left brand-logo'
+                    >
+                        Customer Survey
+                    
+                    </Link>
+                
                     <ul className = 'right'>
 
                         { this.renderContents() }
@@ -112,12 +112,12 @@ export default connect(mapStateToProps)(Header);
 
 
 /* 
-<Link to = {this.props.auth ? '/surveys' : '/'} 
-                          className = 'left brand-logo'
-                    >
-                        Customer Survey
-                    
-                    </Link>
+<span className = 'left brand-logo'>
+                    { 
+                        this.props.auth ? <a href = '/surveys'>{title}</a> 
+                            : <a href = '/'>{title}</a> 
+                    }
+                </span>
 
- 
+
 */
