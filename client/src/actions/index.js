@@ -71,6 +71,8 @@ export const fetchUser = () => async dispatch => {
 //      which does not need a separate, physical reducer.
 export const handleToken = token => async dispatch => {
 
+    console.log('token: ', token)
+
     // token flies through "req.body" in header to the server
     const res = await axios.post('/api/stripe', token);
 

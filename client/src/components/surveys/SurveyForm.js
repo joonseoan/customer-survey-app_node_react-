@@ -80,18 +80,7 @@ class SurveyForm extends Component {
         return(
 
             <div>
-                {/* handleSubmit is a function from object reduxtForm 
-                    
-                    {surveyTitle: "afaafa"}
-                    surveyTitle
-                    :
-                    "afaafa"
-                    __proto__
-                    :
-                    Object                
                 
-                */}
-
                 {/* ************************************************8
                     handleSubmit is the best palce to execute props.onSurveySubmit because it can confirm 
                         that "submit" is successfully done!!!

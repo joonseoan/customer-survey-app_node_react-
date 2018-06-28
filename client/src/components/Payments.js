@@ -9,7 +9,8 @@ class Payments extends Component {
 
 	render() {
 
-		/* just to see how  "process.env.REACT_APP_STRIPE_KEY" works. */
+		console.log('this.props in Payments: ', this.props)
+		// just to see how  "process.env.REACT_APP_STRIPE_KEY" works.
 		// debugger; // => we cannot see "process.env.REACT_APP_STRIPE_KEY" in bundle.js
 		// Instead, the key value shows up. 
 
@@ -98,8 +99,13 @@ class Payments extends Component {
 				description = '$5 for 5 emails'
 				amount = { 500 } // => $5.00
 
-				// give token data the server
+				// Give token data to the server
 				// It is a variable to get 'token' object from stripe api server 
+				
+				// Invocation of this.props.handleToken(token) occurrs at Stripe Server
+				// Then, the server run this function 
+				//	and then it executes action creator!!!
+				//	The, action creator gets payload.data and delivers them to redux.
 				token = { token => this.props.handleToken(token) }
 				stripeKey = { process.env.REACT_APP_STRIPE_KEY }
 			>

@@ -20,8 +20,8 @@ class SurveyNew extends Component {
     state = { showFormReview : false };
 
     // This is a way of controlling rendering SurveyFormReview and SurveyFor
-    //      without Link component.
-    // must access to surveyForm first to get to SurvyeFormReview.
+    //      without "Link" component.
+    // Must access to surveyForm first to get to SurvyeFormReview.
     //      because it is possible for the user to directly access to SurveyFormReview on URL.
     renderContents() {
 
@@ -42,8 +42,6 @@ class SurveyNew extends Component {
 
     render() {
 
-        
-
         return(
 
             <div>
@@ -58,7 +56,7 @@ class SurveyNew extends Component {
 
 // new reduxForm : 
 //  whenever it executes new reduxForm,
-//  the previous attributes and properties will be dumped out.
+//  the previous attributes and properties of reduxForm including "form" will be dumped out.
 // It is reduxform's default function.
 export default reduxForm({
 
