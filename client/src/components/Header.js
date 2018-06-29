@@ -62,6 +62,11 @@ class Header extends Component {
 
     }
 
+    // customerSurvey() {
+
+    //     if (this.props.auth)
+    // }
+
     render() {
 
         const title = 'Customer Survey';
@@ -83,7 +88,7 @@ class Header extends Component {
                     <Link to = {this.props.auth ? '/surveys' : '/'} 
                             className = 'left brand-logo'
                     >
-                        Customer Survey
+                        { this.props.auth ? 'Customer Survey Click Here!' : 'Customer Survey' }
                     
                     </Link>
                 
