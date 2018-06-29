@@ -129,7 +129,8 @@ class Mailer extends helper.Mail {
 		
 		});
 
-		/* [request]
+		/*
+		    [request]
 			request of Sendgrid:  { host: '',
 			[0]   method: 'POST',
 			[0]   path: '/v3/mail/send',
@@ -144,7 +145,7 @@ class Mailer extends helper.Mail {
 			[0]   test: false,
 			[0]   port: '' }
 		*/
-		console.log('request of Sendgrid: ', request);
+		// console.log('request of Sendgrid: ', request);
 
 		const response = await this.sgApi.API(request);
 		
@@ -167,7 +168,8 @@ class Mailer extends helper.Mail {
 			[2] events.js:167
 		
 		*/
-		console.log('response of Sendgrid: ', response);
+		
+		// console.log('response of Sendgrid: ', response);
 		// Express receives this value.
 		return response; 
 
