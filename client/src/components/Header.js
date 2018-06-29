@@ -88,7 +88,7 @@ class Header extends Component {
                     <Link to = {this.props.auth ? '/surveys' : '/'} 
                             className = 'left brand-logo'
                     >
-                        { this.props.auth ? 'Customer Survey Click Here!' : 'Customer Survey' }
+                        Customer Survey
                     
                     </Link>
                 
