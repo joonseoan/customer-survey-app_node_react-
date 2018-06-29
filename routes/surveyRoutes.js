@@ -118,7 +118,6 @@ module.exports = app => {
 		// By using lodash chain!!!! which is working 
 		//		on the basis of array value.
 		_.chain(req.body)
-			// console.log('', req.body)
 			.map((({ url, email }) => {
 
 				const { pathname } = new URL(url);
