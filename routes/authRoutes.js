@@ -13,9 +13,9 @@ module.exports = app => {
 
     // It is same thing as middleware of authenticate and (req, res)
     //      node js.
-    app.get('/auth/google/callback', passport.authenticate('google'), (req, res, next) => {
+    app.get('/auth/google/callback', passport.authenticate('google'), (req, res) => {
 
-        res.redirect('https://calm-cove-22171.herokuapp.com//surveys', next);
+        res.redirect('https://calm-cove-22171.herokuapp.com/surveys');
 
     
     });
