@@ -25,7 +25,7 @@ module.exports = app => {
         //console.log('req.user(callback): ', req.user);
         // res.send(req.user). // => get back to the user with user info (_id, googleID)
         //res.setHeader('content-type', 'text/html'); 
-        res.redirect('/survey');
+        res.redirect('/servey');
 
     });
 
