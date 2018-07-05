@@ -45,8 +45,6 @@ const surveySchema = new Schema({
 	no : { type : Number, default : 0 },
 	_user : {
 
-		// ObjectID type setup.
-		// Be careful!!! about spelling "ObjectId"
 		type : Schema.Types.ObjectId,
 
 		// ***Refers to "User" ObjectId!!!!

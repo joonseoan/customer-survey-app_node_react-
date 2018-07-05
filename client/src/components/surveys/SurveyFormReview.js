@@ -6,7 +6,6 @@ import _ from 'lodash';
 //  after "submit"
 import { withRouter } from 'react-router-dom'; 
 
-
 import formFields from './formField';
 import * as actions from '../../actions';
 
@@ -35,17 +34,7 @@ const SurveyFormReview = ({ onCancel, formValue, submitSurvey, history }) => {
                     onClick = { onCancel }
             
             >Back</button>
-            {/*
-                
-                onClick = { () => submitSurvey(formValue) } //=> automatically invoked.
-                    must use callback of onClick
-                However, because of parameter, "formValue"
-                we need to specify ().
-
-                In order to prevent from involing by itself,
-                we need to specify arrow function like down below.
-
-            */}
+        
             <button className = 'green btn-flat right'
                     
                 onClick = { () => submitSurvey(formValue, history) }
@@ -61,63 +50,9 @@ const SurveyFormReview = ({ onCancel, formValue, submitSurvey, history }) => {
 
 }
 
-/* 
-    // That is why we did form:reduxForm. It gives values to redux!!!!!
-     
-        {auth: {…}, form: {…}}
-        auth
-        :
-        credits
-        :
-        6
-        googleID
-        :
-        "116918350790714881539"
-        __v
-        :
-        0
-        _id
-        :
-        "5b19fb77479478261c58e775"
-        __proto__
-        :
-        Object
-        form
-        :
-        surveyForm
-        :
-        anyTouched
-        :
-        true
-        fields
-        :
-        {title: {…}, subject: {…}, body: {…}, emails: {…}}
-        registeredFields
-        :
-        {title: {…}, subject: {…}, body: {…}, emails: {…}}
-        submitSucceeded
-        :
-        true
-        syncErrors
-        :
-        {emails: undefined}
-        values
-        :
-        {title: "dafa", subject: "adfa", body: "afddadf", emails: "af@daf.com"}
-        __proto__
-        :
-        Object
-        __proto__
-        :
-        Object
-        __proto__
-        :
-Object
-*/
   // console.log('redux State: ', state);
 function mapStateToProps({ form }) {
     
-    console.log('form', form)
     return { formValue : form.surveyForm.values };
 
 }

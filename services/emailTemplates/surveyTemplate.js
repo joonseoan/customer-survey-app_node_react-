@@ -4,10 +4,6 @@ console.log('key: ', keys.redirectDomain);
 
 module.exports = survey => {
 
-	// renders the survey's body.
-	// 1) General
-	// return ('<div>' + survey.body + '</div>');
-
 	return `
 
 		<html>

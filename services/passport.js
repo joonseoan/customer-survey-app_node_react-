@@ -9,14 +9,10 @@ const UserID = mongoose.model('users');
 // "user" object copied and stored in cookie"
 passport.serializeUser((user, done) => {
 
-    // console.log('user : ', user);
-    // console.log('user.id: ', user.id);
     done(null, user.id);
 
 });
 
-// find the "user" document from the database.
-// Give auth to the client if the database has an indentical "id"
 passport.deserializeUser((id, done) => {
 
     UserID.findById(id).then((user) => {
@@ -27,9 +23,6 @@ passport.deserializeUser((id, done) => {
 
 });
 
-// Otherwise.....redirect to Google Signup....
-// ******* It creates "user" that requested by the client
-//      by using passport m/w
 passport.use(
     
     new GoogleStrategy ({
@@ -56,5 +49,3 @@ passport.use(
     })
 
 );
-
-// console.log('passport: ', passport);
