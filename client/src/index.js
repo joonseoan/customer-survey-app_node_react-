@@ -11,6 +11,9 @@ import { Provider } from 'react-redux';
 // Finally, "Provider" makes react and redux woring togeter.
 import { createStore, applyMiddleware } from 'redux';
 
+// Use redux-thunk
+import reduxThunk from 'redux-thunk';
+
 // importing materialize.min.css over here.
 // It is not matter where we imports materialize css.
 // Just once and then good to go!!
@@ -24,16 +27,14 @@ import { createStore, applyMiddleware } from 'redux';
 // 2) just like "require('nodemodule')";
 import 'materialize-css/dist/css/materialize.min.css';
 
-// Use redux-thunk
-import reduxThunk from 'redux-thunk';
 
-import App from './components/App';
-import reducers from './reducers/index';
+//import App from './components/App';
+//import reducers from './reducers/';
 
 
-import axios from 'axios';
+// import axios from 'axios';
 // "axios" is assigned to "window" object.
-window.axios = axios; 
+// window.axios = axios; 
 
 
 // Define store and data-pulling-out middleware in Redux

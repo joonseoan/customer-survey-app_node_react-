@@ -38,8 +38,6 @@ class Header extends Component {
 
     render() {
 
-        const title = 'Customer Survey';
-
         return (
             
             <nav>

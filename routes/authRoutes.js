@@ -15,7 +15,7 @@ module.exports = app => {
     //      node js.
     app.get('/auth/google/callback', passport.authenticate('google'), (req, res) => {
 
-        res.redirect('https://calm-cove-22171.herokuapp.com/surveys');
+        res.redirect('/surveys');
 
     
     });
