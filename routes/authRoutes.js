@@ -16,7 +16,7 @@ module.exports = app => {
 
     // It is same thing as middleware of authenticate and (req, res)
     //      node js.
-    app.get('/auth/google/callback', passport.authenticate('google'), (req, res) => {
+    app.get('/auth/google/callback', passport.authenticate('google'), (req, res, next) => {
 
         // passport middleware returns "req.user" that is from database!!!!
         //      because the middleware contains "find()" to indentify ???
@@ -25,7 +25,9 @@ module.exports = app => {
         //console.log('req.user(callback): ', req.user);
         // res.send(req.user). // => get back to the user with user info (_id, googleID)
         //res.setHeader('content-type', 'text/html'); 
-        res.redirect('/surveys');
+        res.redirect('/surveys', next);
+
+        
 
     });
 
