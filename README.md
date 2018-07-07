@@ -39,7 +39,7 @@
 ##### ![email_form4](emailContent.PNG)
 ##### [Survey Feedback]
 ######  (When the customer clicks "Yes" in the email contents)
-##### ![email_form5](surveyFeedback.PNG)
+##### ![email_form5](surveyFeedback.jpg)
 
 
 
