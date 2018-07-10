@@ -38,11 +38,8 @@ module.exports = app => {
 		console.log('url: ', req.body.url);
 
 		_.chain(req.body)
-
 		
 			.map((({ url, email }) => {
-
-				
 
 				const { pathname } = new URL(url);
 

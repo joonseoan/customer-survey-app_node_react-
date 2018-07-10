@@ -12,7 +12,6 @@ module.exports = app => {
     }));
 
     // It is same thing as middleware of authenticate and (req, res)
-    //      node js.
     app.get('/auth/google/callback', passport.authenticate('google'), (req, res) => {
 
         res.redirect('/surveys');
