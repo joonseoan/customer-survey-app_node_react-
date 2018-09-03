@@ -1,5 +1,5 @@
 const _ = require('lodash');
-const Path = require('path-parser');
+const Path = require('path-parser').default;
 const { URL } = require('url');
 
 const mongoose = require('mongoose');
@@ -35,11 +35,11 @@ module.exports = app => {
 
 	app.post('/api/surveys/webhooks', (req, res) => {
 
-		console.log('url: ', req.body.url);
+		console.log('req.body.url##########3: ', req.body.url);
 
 		_.chain(req.body)
 		
-			.map((({ url, email }) => {
+			.map(({ url, email }) => {
 
 				const { pathname } = new URL(url);
 
@@ -50,7 +50,7 @@ module.exports = app => {
 
 				if(match) return { email : email, surveyId : match.surveyId, choice : match.choice };
 
-			}))
+			})
 			.compact()
 			.uniqBy('email', 'surveyId')
 			.each(({ surveyId, email, choice }) => {
@@ -114,6 +114,8 @@ module.exports = app => {
 			req.user.credits -= 1;
 
 			const user = await req.user.save(); 
+
+			console.log('user:', user);
 
 			res.send(user);
 	

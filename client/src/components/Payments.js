@@ -9,7 +9,8 @@ class Payments extends Component {
 
 	render() {
 
-		console.log('this.props in Payments: ', this.props)
+		console.log('this.props in Payments: ', this.props);
+		
 
 		return(
 
@@ -30,7 +31,7 @@ class Payments extends Component {
 				stripeKey = { process.env.REACT_APP_STRIPE_KEY }
 			>
 
-			<button className = 'btn'>
+				<button className = 'btn'>
 
 					Add Credits
 				
