@@ -1,17 +1,22 @@
 import React, { Component } from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 import { connect } from 'react-redux';
+// import stripe_key from './key';
 
-// import { handleToken } from '../actions/index';
 import * as actions from '../actions';
 
 class Payments extends Component {
+
+	// message() {
+
+	// 	alert('Credit card!!!');
+
+	// }
 
 	render() {
 
 		console.log('this.props in Payments: ', this.props);
 		
-
 		return(
 
 			<StripeCheckout
@@ -30,6 +35,8 @@ class Payments extends Component {
 				token = { token => this.props.handleToken(token) }
 				stripeKey = { process.env.REACT_APP_STRIPE_KEY }
 			>
+
+				{/* <button className = 'btn' message_number = { this.message() }>*/}
 
 				<button className = 'btn'>
 
