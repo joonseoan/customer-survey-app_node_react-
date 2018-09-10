@@ -5,13 +5,15 @@ import { connect } from 'react-redux';
 
 import * as actions from '../actions';
 
+// function message() { alert('kkkkk'); }
+
 class Payments extends Component {
 
-	// message() {
+	 message() {
 
-	// 	alert('Credit card!!!');
+	 	alert('You must enter credit card number: 4242 4242 4242 4242');
 
-	// }
+	 }
 
 	render() {
 
@@ -22,7 +24,7 @@ class Payments extends Component {
 			<StripeCheckout
 
 				name = 'Customer Survey'
-				description = '$5 for 5 emails'
+				description = 'Card number : 4242 4242 4242 4242'
 				amount = { 500 } // => $5.00
 
 				// Give token data to the server
@@ -38,8 +40,8 @@ class Payments extends Component {
 
 				{/* <button className = 'btn' message_number = { this.message() }>*/}
 
-				<button className = 'btn'>
-
+				<button className = 'btn' onClick = { this.message.bind() }>
+					
 					Add Credits
 				
 				</button>
